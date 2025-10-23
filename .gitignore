@@ -1,0 +1,12 @@
+# Ignore Visual Studio-specific folders
+.vs/
+*.vcxproj*
+*.sln
+CMakeSettings.json
+CMakeUserPresets.json
+CMakeCache.txt
+build/
+out/
+bin/
+*.user
+*.log
