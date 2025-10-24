@@ -21,8 +21,8 @@ target_compile_features(kj_utils INTERFACE cxx_std_23)
 add_library(kj::utils ALIAS kj_utils)
 
 # Build the example program demonstrating usage of kj-utils
-add_executable(example examples/basic_usage.cpp)
-target_link_libraries(example PRIVATE kj::utils)
+##add_executable(example examples/basic_usage.cpp)
+##target_link_libraries(example PRIVATE kj::utils)
 
 # Optionally enable building and running tests (enabled by default)
 option(KJ_UTILS_ENABLE_TESTS "Enable building kj-utils tests" ON)
