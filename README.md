@@ -45,8 +45,13 @@ int main() {
 
 ## Projects Using kj-utils
 
+<<<<<<< HEAD
+- gpu-kernel-benchmark – modular tool for GPU kernel measurement (CUDA)
+- ml-scenario-benchmark (planned) – for benchmarking ML workloads with consistent methodology
+=======
 - gpu-kernel-benchmark - modular tool for GPU kernel measurement (CUDA)
 - ml-scenario-benchmark (planned) - for benchmarking ML workloads with consistent methodology
+>>>>>>> bd68443716ba43e579af9720ca62c8f0cfd612d6
 
 kj-utils can also be reused in embedded systems, HPC pipelines, game engines, or any modern C++ project.
 
@@ -68,7 +73,11 @@ No build steps. Just:
 git clone https://github.com/yourname/kj-utils
 ```
 
+<<<<<<< HEAD
+Then include what you need. That’s it.
+=======
 Then include what you need. That's it.
+>>>>>>> bd68443716ba43e579af9720ca62c8f0cfd612d6
 
 ## License
 
@@ -77,4 +86,7 @@ Licensed under the MIT License. Free for open source and commercial use.
 ## Author
 
 Developed by Kamil Jatkowski to support clean and modular C++ systems built around performance, simplicity, and reuse.
+<<<<<<< HEAD
+=======
 
+>>>>>>> bd68443716ba43e579af9720ca62c8f0cfd612d6
