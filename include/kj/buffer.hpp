@@ -6,6 +6,8 @@
 #include <span>
 #include <stdexcept>
 #include <cstdlib>
+#include <iostream>
+
 
 #if defined(_MSC_VER)
 #include <malloc.h>  // _aligned_malloc / _aligned_free for MSVC
@@ -42,15 +44,19 @@ namespace kj {
 			raw = _aligned_malloc(size * sizeof(T), alignment);
 			if (!raw) throw std::bad_alloc{};
 #else
-			if (posix_memalign(&raw, alignment, size * sizeof(T)) != 0)
 #ifndef NDEBUG
-				if (ret != 0) {
-					std::cerr << "[kj::Buffer] posix_memalign failed with code " << ret
-						<< " (alignment = " << alignment << ", size = " << size << ")\n";
-				}
+			int ret = posix_memalign(&raw, alignment, size * sizeof(T));
+			if (ret != 0) {
+				std::cerr << "[kj::Buffer] posix_memalign failed with code " << ret
+					<< " (alignment: " << alignment << ", size: " << size * sizeof(T) << ")\n";
+			}
+#else
+			posix_memalign(&raw, alignment, size * sizeof(T));
 #endif
-			if (ret != 0)
+
+			if (raw == nullptr)
 				throw std::bad_alloc{};
+
 #endif
 			data_ = static_cast<T*>(raw);
 		}
