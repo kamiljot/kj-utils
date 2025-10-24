@@ -37,7 +37,8 @@ namespace kj {
 		 *
 		 * @throws std::bad_alloc if memory allocation fails.
 		 */
-		Buffer(std::size_t size, std::size_t alignment = alignof(T)) : size_(size) {
+		Buffer(std::size_t size, std::size_t alignment = std::max(alignof(T), alignof(void*))) : size_(size) {
+
 			void* raw = nullptr;
 
 #if defined(_MSC_VER)
