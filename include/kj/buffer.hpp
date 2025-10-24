@@ -43,6 +43,13 @@ namespace kj {
 			if (!raw) throw std::bad_alloc{};
 #else
 			if (posix_memalign(&raw, alignment, size * sizeof(T)) != 0)
+#ifndef NDEBUG
+				if (ret != 0) {
+					std::cerr << "[kj::Buffer] posix_memalign failed with code " << ret
+						<< " (alignment = " << alignment << ", size = " << size << ")\n";
+				}
+#endif
+			if (ret != 0)
 				throw std::bad_alloc{};
 #endif
 			data_ = static_cast<T*>(raw);
