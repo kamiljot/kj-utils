@@ -1,18 +1,18 @@
 # kj-utils
 
-kj-utils is a modern, header-only C++23 utility library that provides foundational building blocks for high-performance and clean C++ applications. It focuses on RAII, modularity, and cross-platform usability — with zero dependencies and maximum portability.
+kj-utils is a modern, header-only C++23 utility library that provides foundational building blocks for high-performance and clean C++ applications. It focuses on RAII, modularity, and cross-platform usability - with zero dependencies and maximum portability.
 
 ## Features
 
 This library provides a curated set of reusable components:
 
-- `kj::Buffer<T>` – RAII-managed aligned buffer with move semantics
-- `kj::View<T>` – friendly aliases and helpers around `std::span`
-- `kj::Timer` / `kj::ScopedTimer` – precise wall-clock timing tools
-- `kj::ScopeGuard` – deterministic resource cleanup (like `scope_exit`)
-- `kj::Benchmark` – minimalistic benchmarking loop with warmup and stats
-- `kj::Result<T>` – lightweight `expected<T, E>` implementation
-- `kj::memory` – aligned `new`/`delete` helpers (cross-platform)
+- `kj::Buffer<T>` - RAII-managed aligned buffer with move semantics
+- `kj::View<T>` - friendly aliases and helpers around `std::span`
+- `kj::Timer` / `kj::ScopedTimer` - precise wall-clock timing tools
+- `kj::ScopeGuard` - deterministic resource cleanup (like `scope_exit`)
+- `kj::Benchmark` - minimalistic benchmarking loop with warmup and stats
+- `kj::Result<T>` - lightweight `expected<T, E>` implementation
+- `kj::memory` - aligned `new`/`delete` helpers (cross-platform)
 
 All components are header-only, live in the `kj::` namespace, and follow modern C++20/23 idioms.
 

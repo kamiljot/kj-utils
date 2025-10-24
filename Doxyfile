@@ -1,0 +1,35 @@
+# Doxygen configuration for kj-utils
+
+PROJECT_NAME           = "kj-utils"
+PROJECT_BRIEF          = "Header-only modern C++ utility library"
+PROJECT_LOGO           =
+OUTPUT_DIRECTORY       = docs
+INPUT = include/ examples/ test/ README.md
+RECURSIVE              = YES
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+EXTRACT_ANON_NSPACES   = YES
+FILE_PATTERNS          = *.hpp *.cpp
+EXTENSION_MAPPING      = hpp=C++
+USE_MDFILE_AS_MAINPAGE = README.md
+
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+
+GENERATE_LATEX         = NO
+# Uncomment if you want LaTeX/PDF support:
+# GENERATE_LATEX       = YES
+# LATEX_OUTPUT         = latex
+
+USE_MDFILE_AS_MAINPAGE = README.md
+
+ALIASES += "section=\section"
+
+# Improve output
+QUIET                  = YES
+WARN_IF_UNDOCUMENTED  = YES
+WARN_IF_DOC_ERROR     = YES
+
+# For C++23 features
+CLANG_ASSISTED_PARSING = NO
