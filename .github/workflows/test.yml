@@ -14,8 +14,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - { os: ubuntu-latest, compiler: gcc,   cc: gcc,   cxx: g++ }
-          - { os: ubuntu-latest, compiler: clang, cc: clang, cxx: clang++ }
+          - { os: ubuntu-latest,  compiler: gcc,   cc: gcc,   cxx: g++ }
+          - { os: ubuntu-latest,  compiler: clang, cc: clang, cxx: clang++ }
           - { os: windows-latest, compiler: msvc }
 
     steps:
@@ -24,21 +24,33 @@ jobs:
         with:
           submodules: recursive
 
-      # --- Linux setup
+      # ---------- Linux ----------
       - name: Setup (Linux)
-        if: startsWith(matrix.os, 'ubuntu')
+        if: matrix.os == 'ubuntu-latest'
         run: |
           sudo apt-get update
           sudo apt-get install -y cmake ninja-build
           echo "CC=${{ matrix.cc }}"  >> $GITHUB_ENV
           echo "CXX=${{ matrix.cxx }}" >> $GITHUB_ENV
 
-      # --- Windows setup
-      - name: Setup (Windows)
-        if: startsWith(matrix.os, 'windows')
+      # ---------- Windows (MSVC) ----------
+      - name: Setup MSVC environment (x64)
+        if: matrix.os == 'windows-latest'
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+
+      - name: Install Ninja (Windows)
+        if: matrix.os == 'windows-latest'
+        shell: pwsh
+        run: choco install ninja --no-progress
+
+      - name: Sanitize PATH (Windows)
+        if: matrix.os == 'windows-latest'
         shell: pwsh
         run: |
-          choco install ninja --no-progress
+          $env:PATH = ($env:PATH -split ';' | Where-Object {$_ -notmatch 'msys|mingw'}) -join ';'
+          "PATH=$env:PATH" | Out-File -FilePath $env:GITHUB_ENV -Append
 
       - name: Cache FetchContent deps
         uses: actions/cache@v4
@@ -55,30 +67,36 @@ jobs:
           -DCMAKE_BUILD_TYPE=Release
           -DKJ_UTILS_ENABLE_TESTS=ON
           -DKJ_UTILS_BUILD_EXAMPLES=ON
+          ${{ matrix.os == 'windows-latest' && '-DCMAKE_C_COMPILER=cl -DCMAKE_CXX_COMPILER=cl' || '' }}
 
       - name: Build
         run: cmake --build build -j
 
-      - name: Ensure test reports dir
-        run: |
-          mkdir -p build/test/reports
-        shell: bash
+      # Ensure reports dir
+      - name: Ensure test reports dir (Linux)
+        if: matrix.os == 'ubuntu-latest'
+        run: mkdir -p build/test/reports
 
-      - name: Run tests
-        run: |
-          if [ "${{ runner.os }}" = "Windows" ] || [ "${{ matrix.os }}" = "windows-latest" ]; then
-            ctest --test-dir build -C Release -j --output-on-failure
-          else
-            ctest --test-dir build -j --output-on-failure
-          fi
-        shell: bash
+      - name: Ensure test reports dir (Windows)
+        if: matrix.os == 'windows-latest'
+        shell: pwsh
+        run: New-Item -ItemType Directory -Force build/test/reports | Out-Null
+
+      # Run tests
+      - name: Run tests (Linux)
+        if: matrix.os == 'ubuntu-latest'
+        run: ctest --test-dir build -j --output-on-failure
+
+      - name: Run tests (Windows, MSVC)
+        if: matrix.os == 'windows-latest'
+        shell: pwsh
+        run: ctest --test-dir build -C Release -j --output-on-failure
 
       - name: Upload test reports (JUnit)
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: junit-${{ matrix.os }}-${{ matrix.compiler }}
-          path: |
-            build/test/reports/*.xml
+          path: build/test/reports/*.xml
           if-no-files-found: warn
           retention-days: 180
