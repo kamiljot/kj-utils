@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['only_20design_0',['Header-Only Design',['../index.html#autotoc_md6',1,'']]]
+  ['include_20what_20you_20need_20that’s_20it_0',['Then include what you need. That’s it.',['../index.html#autotoc_md8',1,'']]],
+  ['it_1',['Then include what you need. That’s it.',['../index.html#autotoc_md8',1,'']]]
 ];

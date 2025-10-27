@@ -1,6 +1,27 @@
 var searchData=
 [
-  ['use_0',['Example Use',['../index.html#autotoc_md3',1,'']]],
-  ['using_20kj_20utils_1',['Projects Using kj-utils',['../index.html#autotoc_md4',1,'']]],
-  ['utils_2',['utils',['../index.html',1,'kj-utils'],['../index.html#autotoc_md4',1,'Projects Using kj-utils']]]
+  ['same_0',['same',['../structkj_1_1detail_1_1_d_s_u.html#adebc82e87ce62bdc7e195187b7e45d76',1,'kj::detail::DSU::same()'],['../structkj_1_1detail_1_1_rollback_d_s_u.html#ad03d7bddd15f2fbe8f1e3e46a3d07428',1,'kj::detail::RollbackDSU::same()']]],
+  ['samples_1',['samples',['../structkj_1_1_benchmark_result.html#a0b95158bb7e353da390e9073781b2b62',1,'kj::BenchmarkResult']]],
+  ['scenario_20benchmark_20planned_20–_20for_20benchmarking_20ml_20workloads_20with_20consistent_20methodology_2',['- ml-scenario-benchmark (planned) – for benchmarking ML workloads with consistent methodology',['../index.html#autotoc_md5',1,'']]],
+  ['scope_5fexit_3',['scope_exit',['../namespacekj.html#a5475de45d586f06cc1449dab729a93ae',1,'kj']]],
+  ['scope_5fguard_2ehpp_4',['scope_guard.hpp',['../scope__guard_8hpp.html',1,'']]],
+  ['scopedtimer_5',['ScopedTimer',['../classkj_1_1_scoped_timer.html',1,'kj::ScopedTimer'],['../classkj_1_1_scoped_timer.html#ac0daceed6863efbf228e90ed1b257901',1,'kj::ScopedTimer::ScopedTimer()']]],
+  ['scopeguard_6',['ScopeGuard',['../classkj_1_1_scope_guard.html',1,'kj::ScopeGuard&lt; F &gt;'],['../classkj_1_1_scope_guard.html#ad45ce9e50663d6effbf9f12fe2401706',1,'kj::ScopeGuard::ScopeGuard(F &amp;&amp;f) noexcept'],['../classkj_1_1_scope_guard.html#addbab1578dc5a8062c5405e9792da749',1,'kj::ScopeGuard::ScopeGuard(const ScopeGuard &amp;)=delete'],['../classkj_1_1_scope_guard.html#ac4fcf6bedc50ede0f2dbe39934a1c020',1,'kj::ScopeGuard::ScopeGuard(ScopeGuard &amp;&amp;other) noexcept']]],
+  ['size_7',['size',['../classkj_1_1_buffer.html#a71b6f635b3a81da3b19feb0508509955',1,'kj::Buffer::size()'],['../structkj_1_1detail_1_1_d_s_u.html#a911184a1fe79d1c5e5b9a1623148635f',1,'kj::detail::DSU::size()'],['../structkj_1_1detail_1_1_rollback_d_s_u.html#a9a98c80a556c0fa042d3266ecc5546d3',1,'kj::detail::RollbackDSU::size()'],['../classkj_1_1detail_1_1_skew_heap.html#ae7cba097d03ed3f0304bf543bf0e7b3d',1,'kj::detail::SkewHeap::size()']]],
+  ['size_5f_8',['size_',['../classkj_1_1_buffer.html#ab65f171955e0a02985e2d32e9f5733e8',1,'kj::Buffer']]],
+  ['skew_5fheap_2ehpp_9',['skew_heap.hpp',['../skew__heap_8hpp.html',1,'']]],
+  ['skew_5fheap_5fimpl_2ehpp_10',['skew_heap_impl.hpp',['../skew__heap__impl_8hpp.html',1,'']]],
+  ['skewheap_11',['SkewHeap',['../classkj_1_1detail_1_1_skew_heap.html',1,'kj::detail::SkewHeap&lt; T, Comp, UsePool &gt;'],['../classkj_1_1detail_1_1_skew_heap.html#ae45c1a4591cb525821ba3215a4595511',1,'kj::detail::SkewHeap::SkewHeap()=default'],['../classkj_1_1detail_1_1_skew_heap.html#a000e3f4c69dfdb121b5304088db97d21',1,'kj::detail::SkewHeap::SkewHeap(const Comp &amp;c)'],['../classkj_1_1detail_1_1_skew_heap.html#a5677213eb7bb825fa37631c495d2923f',1,'kj::detail::SkewHeap::SkewHeap(const SkewHeap &amp;)=delete'],['../classkj_1_1detail_1_1_skew_heap.html#a51aa90bc043206b36001306a7c3bf122',1,'kj::detail::SkewHeap::SkewHeap(SkewHeap &amp;&amp;other) noexcept'],['../namespacekj.html#a0e00deb2a15bbc80df64003089f05379',1,'kj::SkewHeap']]],
+  ['skewheap_3c_20t_2c_20comp_2c_20false_20_3e_12',['SkewHeap&lt; T, Comp, false &gt;',['../classkj_1_1detail_1_1_skew_heap.html',1,'kj::detail']]],
+  ['skewheap_3c_20t_2c_20comp_2c_20true_20_3e_13',['SkewHeap&lt; T, Comp, true &gt;',['../classkj_1_1detail_1_1_skew_heap.html',1,'kj::detail']]],
+  ['skewheaparena_14',['SkewHeapArena',['../namespacekj.html#a308bf383713b98a731eba354a520aab7',1,'kj']]],
+  ['skip_5fws_5f_15',['skip_ws_',['../classkj_1_1io_1_1_fast_input.html#ae5e07cfb1f5ee29f1e82ef43b01a37a6',1,'kj::io::FastInput']]],
+  ['snapshot_16',['snapshot',['../structkj_1_1detail_1_1_rollback_d_s_u.html#a4eea506b962c11c36c934dcd24c4b131',1,'kj::detail::RollbackDSU']]],
+  ['span_17',['span',['../classkj_1_1_buffer.html#a0a0ab09ff0cb71222078a7da898838f5',1,'kj::Buffer::span() noexcept'],['../classkj_1_1_buffer.html#adce921d4141762c4fbffc742fe6b442e',1,'kj::Buffer::span() const noexcept']]],
+  ['start_18',['start',['../classkj_1_1_timer.html#aab545cb5ba9aeb9f510cac649ec14e2e',1,'kj::Timer']]],
+  ['start_5f_19',['start_',['../classkj_1_1_scoped_timer.html#aa476b9664d6aea03d8c4a6eaa4ba6c61',1,'kj::ScopedTimer::start_'],['../classkj_1_1_timer.html#ae7cb143eb8b8875455864b7a93544e24',1,'kj::Timer::start_']]],
+  ['stk_20',['stk',['../structkj_1_1detail_1_1_rollback_d_s_u.html#a3e98a98517d6ed11246d36f4a16f3707',1,'kj::detail::RollbackDSU']]],
+  ['stop_21',['stop',['../classkj_1_1_timer.html#a5d7782922b1b7d1784b2cc6e1e43213a',1,'kj::Timer']]],
+  ['storage_5f_22',['storage_',['../classkj_1_1_result.html#a061ea7f392706cefd590cf7a602bd83d',1,'kj::Result']]],
+  ['sz_5f_23',['sz_',['../classkj_1_1detail_1_1_skew_heap.html#a3f33617f84419d7e287e0b0875dd4c49',1,'kj::detail::SkewHeap']]]
 ];

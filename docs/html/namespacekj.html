@@ -93,6 +93,11 @@ $(function(){initNavTree('namespacekj.html','',''); });
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:detail" id="r_detail"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekj_1_1detail.html">detail</a></td></tr>
+<tr class="memitem:io" id="r_io"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekj_1_1io.html">io</a></td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:Benchmark" id="r_Benchmark"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkj_1_1_benchmark.html">Benchmark</a></td></tr>
@@ -112,6 +117,16 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
+<tr class="memitem:a6fe8a263519cd5ca6cdbc933f739559b" id="r_a6fe8a263519cd5ca6cdbc933f739559b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6fe8a263519cd5ca6cdbc933f739559b">DSU</a> = <a class="el" href="structkj_1_1detail_1_1_d_s_u.html">::kj::detail::DSU</a></td></tr>
+<tr class="memdesc:a6fe8a263519cd5ca6cdbc933f739559b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Public alias for the classic (path-compressing) <a class="el" href="#a6fe8a263519cd5ca6cdbc933f739559b" title="Public alias for the classic (path-compressing) DSU implementation.">DSU</a> implementation.  <br /></td></tr>
+<tr class="memitem:a3754f9169b4580c69c0ffe6ffe1f103a" id="r_a3754f9169b4580c69c0ffe6ffe1f103a"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3754f9169b4580c69c0ffe6ffe1f103a">RollbackDSU</a> = <a class="el" href="structkj_1_1detail_1_1_rollback_d_s_u.html">::kj::detail::RollbackDSU</a></td></tr>
+<tr class="memdesc:a3754f9169b4580c69c0ffe6ffe1f103a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Public alias for the rollback-capable <a class="el" href="#a6fe8a263519cd5ca6cdbc933f739559b" title="Public alias for the classic (path-compressing) DSU implementation.">DSU</a> (no path compression).  <br /></td></tr>
+<tr class="memitem:a0e00deb2a15bbc80df64003089f05379" id="r_a0e00deb2a15bbc80df64003089f05379"><td class="memTemplParams" colspan="2">template&lt;class T, class Comp = std::less&lt;T&gt;&gt; </td></tr>
+<tr class="memitem:a0e00deb2a15bbc80df64003089f05379 template"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e00deb2a15bbc80df64003089f05379">SkewHeap</a> = <a class="el" href="classkj_1_1detail_1_1_skew_heap.html">::kj::detail::SkewHeap</a>&lt;T, Comp, false&gt;</td></tr>
+<tr class="memdesc:a0e00deb2a15bbc80df64003089f05379"><td class="mdescLeft">&#160;</td><td class="mdescRight">Public alias for a standard skew heap (min-heap by default).  <br /></td></tr>
+<tr class="memitem:a308bf383713b98a731eba354a520aab7" id="r_a308bf383713b98a731eba354a520aab7"><td class="memTemplParams" colspan="2">template&lt;class T, class Comp = std::less&lt;T&gt;&gt; </td></tr>
+<tr class="memitem:a308bf383713b98a731eba354a520aab7 template"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a308bf383713b98a731eba354a520aab7">SkewHeapArena</a> = <a class="el" href="classkj_1_1detail_1_1_skew_heap.html">::kj::detail::SkewHeap</a>&lt;T, Comp, true&gt;</td></tr>
+<tr class="memdesc:a308bf383713b98a731eba354a520aab7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Public alias for a skew heap backed by an internal object pool.  <br /></td></tr>
 <tr class="memitem:a96ee5b297f31b845b483c9577dbc4a28" id="r_a96ee5b297f31b845b483c9577dbc4a28"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
 <tr class="memitem:a96ee5b297f31b845b483c9577dbc4a28 template"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a96ee5b297f31b845b483c9577dbc4a28">View</a> = std::span&lt;T&gt;</td></tr>
 <tr class="memdesc:a96ee5b297f31b845b483c9577dbc4a28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias for a mutable view over a contiguous range of elements.  <br /></td></tr>
@@ -170,6 +185,77 @@ template&lt;typename T&gt; </div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a6fe8a263519cd5ca6cdbc933f739559b" name="a6fe8a263519cd5ca6cdbc933f739559b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fe8a263519cd5ca6cdbc933f739559b">&#9670;&#160;</a></span>DSU</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a6fe8a263519cd5ca6cdbc933f739559b">kj::DSU</a> = <a class="el" href="structkj_1_1detail_1_1_d_s_u.html">::kj::detail::DSU</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Public alias for the classic (path-compressing) <a class="el" href="#a6fe8a263519cd5ca6cdbc933f739559b" title="Public alias for the classic (path-compressing) DSU implementation.">DSU</a> implementation. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="structkj_1_1detail_1_1_d_s_u.html" title="Disjoint Set Union (Union-Find) with union-by-size and path compression.">kj::detail::DSU</a> </dd></dl>
+
+</div>
+</div>
+<a id="a3754f9169b4580c69c0ffe6ffe1f103a" name="a3754f9169b4580c69c0ffe6ffe1f103a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3754f9169b4580c69c0ffe6ffe1f103a">&#9670;&#160;</a></span>RollbackDSU</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a3754f9169b4580c69c0ffe6ffe1f103a">kj::RollbackDSU</a> = <a class="el" href="structkj_1_1detail_1_1_rollback_d_s_u.html">::kj::detail::RollbackDSU</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Public alias for the rollback-capable <a class="el" href="#a6fe8a263519cd5ca6cdbc933f739559b" title="Public alias for the classic (path-compressing) DSU implementation.">DSU</a> (no path compression). </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="structkj_1_1detail_1_1_rollback_d_s_u.html" title="Rollback-able Disjoint Set Union (no path compression).">kj::detail::RollbackDSU</a> </dd></dl>
+
+</div>
+</div>
+<a id="a0e00deb2a15bbc80df64003089f05379" name="a0e00deb2a15bbc80df64003089f05379"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e00deb2a15bbc80df64003089f05379">&#9670;&#160;</a></span>SkewHeap</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T, class Comp = std::less&lt;T&gt;&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a0e00deb2a15bbc80df64003089f05379">kj::SkewHeap</a> = <a class="el" href="classkj_1_1detail_1_1_skew_heap.html">::kj::detail::SkewHeap</a>&lt;T, Comp, false&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Public alias for a standard skew heap (min-heap by default). </p>
+
+</div>
+</div>
+<a id="a308bf383713b98a731eba354a520aab7" name="a308bf383713b98a731eba354a520aab7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a308bf383713b98a731eba354a520aab7">&#9670;&#160;</a></span>SkewHeapArena</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T, class Comp = std::less&lt;T&gt;&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a308bf383713b98a731eba354a520aab7">kj::SkewHeapArena</a> = <a class="el" href="classkj_1_1detail_1_1_skew_heap.html">::kj::detail::SkewHeap</a>&lt;T, Comp, true&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Public alias for a skew heap backed by an internal object pool. </p>
+<p>Use this when you expect a very large number of node allocations (push/pop/merge), and want to reduce allocation overhead. You can pre-reserve nodes via <code>reserve_nodes</code>. </p>
 
 </div>
 </div>

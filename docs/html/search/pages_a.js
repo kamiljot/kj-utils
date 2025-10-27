@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['use_0',['Example Use',['../index.html#autotoc_md3',1,'']]],
-  ['using_20kj_20utils_1',['Projects Using kj-utils',['../index.html#autotoc_md4',1,'']]],
-  ['utils_2',['utils',['../index.html',1,'kj-utils'],['../index.html#autotoc_md4',1,'Projects Using kj-utils']]]
+  ['methodology_0',['- ml-scenario-benchmark (planned) – for benchmarking ML workloads with consistent methodology',['../index.html#autotoc_md5',1,'']]],
+  ['ml_20scenario_20benchmark_20planned_20–_20for_20benchmarking_20ml_20workloads_20with_20consistent_20methodology_1',['- ml-scenario-benchmark (planned) – for benchmarking ML workloads with consistent methodology',['../index.html#autotoc_md5',1,'']]],
+  ['ml_20workloads_20with_20consistent_20methodology_2',['- ml-scenario-benchmark (planned) – for benchmarking ML workloads with consistent methodology',['../index.html#autotoc_md5',1,'']]]
 ];

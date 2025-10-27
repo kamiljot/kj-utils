@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['example_20use_0',['Example Use',['../index.html#autotoc_md3',1,'']]]
+  ['consistent_20methodology_0',['- ml-scenario-benchmark (planned) – for benchmarking ML workloads with consistent methodology',['../index.html#autotoc_md5',1,'']]]
 ];

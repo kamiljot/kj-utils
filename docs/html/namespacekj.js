@@ -1,5 +1,7 @@
 var namespacekj =
 [
+    [ "detail", "namespacekj_1_1detail.html", "namespacekj_1_1detail" ],
+    [ "io", "namespacekj_1_1io.html", "namespacekj_1_1io" ],
     [ "Benchmark", "classkj_1_1_benchmark.html", "classkj_1_1_benchmark" ],
     [ "BenchmarkResult", "structkj_1_1_benchmark_result.html", "structkj_1_1_benchmark_result" ],
     [ "Buffer", "classkj_1_1_buffer.html", "classkj_1_1_buffer" ],
@@ -8,6 +10,10 @@ var namespacekj =
     [ "ScopeGuard", "classkj_1_1_scope_guard.html", "classkj_1_1_scope_guard" ],
     [ "Timer", "classkj_1_1_timer.html", "classkj_1_1_timer" ],
     [ "ConstView", "namespacekj.html#a9108a3ec9ee35452ef7378ab94ad61b0", null ],
+    [ "DSU", "namespacekj.html#a6fe8a263519cd5ca6cdbc933f739559b", null ],
+    [ "RollbackDSU", "namespacekj.html#a3754f9169b4580c69c0ffe6ffe1f103a", null ],
+    [ "SkewHeap", "namespacekj.html#a0e00deb2a15bbc80df64003089f05379", null ],
+    [ "SkewHeapArena", "namespacekj.html#a308bf383713b98a731eba354a520aab7", null ],
     [ "View", "namespacekj.html#a96ee5b297f31b845b483c9577dbc4a28", null ],
     [ "aligned_alloc", "namespacekj.html#a01287797ce9ada4af55d66a93f918a75", null ],
     [ "aligned_delete", "namespacekj.html#aecf1f9a6a945eb384eb8debae8d1ff7d", null ],

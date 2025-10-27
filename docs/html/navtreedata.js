@@ -29,10 +29,15 @@ var NAVTREE =
     [ "Purpose", "index.html#autotoc_md2", null ],
     [ "Example Use", "index.html#autotoc_md3", null ],
     [ "Projects Using kj-utils", "index.html#autotoc_md4", null ],
-    [ "Documentation", "index.html#autotoc_md5", null ],
-    [ "Header-Only Design", "index.html#autotoc_md6", null ],
-    [ "License", "index.html#autotoc_md7", null ],
-    [ "Author", "index.html#autotoc_md8", null ],
+    [ "- ml-scenario-benchmark (planned) – for benchmarking ML workloads with consistent methodology", "index.html#autotoc_md5", [
+      [ "Documentation", "index.html#autotoc_md6", null ],
+      [ "Header-Only Design", "index.html#autotoc_md7", null ]
+    ] ],
+    [ "Then include what you need. That’s it.", "index.html#autotoc_md8", [
+      [ "License", "index.html#autotoc_md9", null ],
+      [ "Author", "index.html#autotoc_md10", null ]
+    ] ],
+    [ "&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD", "index.html#autotoc_md11", null ],
     [ "Test List", "test.html", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
@@ -48,7 +53,8 @@ var NAVTREE =
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", null ],
         [ "Functions", "functions_func.html", null ],
-        [ "Variables", "functions_vars.html", null ]
+        [ "Variables", "functions_vars.html", null ],
+        [ "Typedefs", "functions_type.html", null ]
       ] ]
     ] ],
     [ "Files", "files.html", [
@@ -64,7 +70,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"annotated.html"
+"a__skew__heap__template_8cpp.html",
+"classkj_1_1io_1_1_fast_output.html#a2d3f7998b00a65f77e52b3137030501f"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

@@ -93,20 +93,40 @@ $(function(){initNavTree('test.html','',''); });
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><dl class="reflist">
+<dt>Member <a class="el" href="test__dsu_8cpp.html#a50713e6c864665f1fa813fd7d07f8e37">TEST_CASE</a>  ("kj::DSU basic connectivity and size", "[dsu][basic]")</dt>
+<dd><a class="anchor" id="_test000001"></a>Verifies that DSU connects components and reports sizes correctly.  </dd>
+<dt>Member <a class="el" href="test__dsu_8cpp.html#a0fde75287d3e3f1fefb4421ec1c51c69">TEST_CASE</a>  ("kj::DSU reset", "[dsu][reset]")</dt>
+<dd><a class="anchor" id="_test000002"></a>Verifies that DSU::reset reinitializes the structure.  </dd>
+<dt>Member <a class="el" href="test__dsu_8cpp.html#adb8841b1e071b991196768b7cc39ade7">TEST_CASE</a>  ("kj::RollbackDSU snapshot/rollback", "[dsu][rollback]")</dt>
+<dd><a class="anchor" id="_test000003"></a>Verifies RollbackDSU snapshot and rollback semantics.  </dd>
 <dt>Member <a class="el" href="test__result_8cpp.html#a769ed8f787360a956214d08046018cde">TEST_CASE</a>  ("kj::Result holds value", "[result]")</dt>
-<dd><a class="anchor" id="_test000001"></a>Verifies that <a class="el" href="classkj_1_1_result.html" title="A lightweight alternative to std::expected for value-or-error return semantics.">kj::Result</a> correctly holds a successful value.  </dd>
+<dd><a class="anchor" id="_test000004"></a>Verifies that <a class="el" href="classkj_1_1_result.html" title="A lightweight alternative to std::expected for value-or-error return semantics.">kj::Result</a> correctly holds a successful value.  </dd>
 <dt>Member <a class="el" href="test__result_8cpp.html#a635327c9e53008b5b78946b3f764afd8">TEST_CASE</a>  ("kj::Result holds error", "[result]")</dt>
-<dd><a class="anchor" id="_test000002"></a>Verifies that <a class="el" href="classkj_1_1_result.html" title="A lightweight alternative to std::expected for value-or-error return semantics.">kj::Result</a> correctly holds an error value.  </dd>
+<dd><a class="anchor" id="_test000005"></a>Verifies that <a class="el" href="classkj_1_1_result.html" title="A lightweight alternative to std::expected for value-or-error return semantics.">kj::Result</a> correctly holds an error value.  </dd>
 <dt>Member <a class="el" href="test__result_8cpp.html#a3b87cd19101cc968fbbe5ac8e864cc4d">TEST_CASE</a>  ("kj::Result can be moved", "[result][move]")</dt>
-<dd><a class="anchor" id="_test000003"></a>Verifies that <a class="el" href="classkj_1_1_result.html" title="A lightweight alternative to std::expected for value-or-error return semantics.">kj::Result</a> can be move-constructed while preserving its content.  </dd>
+<dd><a class="anchor" id="_test000006"></a>Verifies that <a class="el" href="classkj_1_1_result.html" title="A lightweight alternative to std::expected for value-or-error return semantics.">kj::Result</a> can be move-constructed while preserving its content.  </dd>
 <dt>Member <a class="el" href="test__scope__exit_8cpp.html#a829d37063cefd3472694e2e03278908e">TEST_CASE</a>  ("kj::ScopeGuard executes on scope exit", "[scope_exit]")</dt>
-<dd><a class="anchor" id="_test000004"></a>Ensures that the cleanup function is called when the guard goes out of scope.  </dd>
+<dd><a class="anchor" id="_test000007"></a>Ensures that the cleanup function is called when the guard goes out of scope.  </dd>
 <dt>Member <a class="el" href="test__scope__exit_8cpp.html#a0a1ce9170bc73bed666de555c62cd318">TEST_CASE</a>  ("kj::ScopeGuard releases early when requested", "[scope_exit]")</dt>
-<dd><a class="anchor" id="_test000005"></a>Ensures that calling dismiss() disables cleanup execution.  </dd>
+<dd><a class="anchor" id="_test000008"></a>Ensures that calling dismiss() disables cleanup execution.  </dd>
+<dt>Member <a class="el" href="test__skew__heap_8cpp.html#a217cd30556f86f791bb5af1afd99751c">TEST_CASE</a>  ("kj::SkewHeap basic min-heap ordering", "[skew_heap][min]")</dt>
+<dd><a class="anchor" id="_test000009"></a>Verifies min-heap ordering with push/pop.  </dd>
+<dt>Member <a class="el" href="test__skew__heap_8cpp.html#a54e28cec86d23aa63934594559e99799">TEST_CASE</a>  ("kj::SkewHeap merge and donor emptied", "[skew_heap][merge]")</dt>
+<dd><a class="anchor" id="_test000010"></a>Verifies merge operation and that the donor heap becomes empty.  </dd>
+<dt>Member <a class="el" href="test__skew__heap_8cpp.html#a26d433304d2e645fe7c3881758c8f160">TEST_CASE</a>  ("kj::SkewHeap self-merge is no-op", "[skew_heap][merge]")</dt>
+<dd><a class="anchor" id="_test000011"></a>Verifies that merging with self is a no-op and does not corrupt state.  </dd>
+<dt>Member <a class="el" href="test__skew__heap_8cpp.html#a4b22cec75c4740d6daa59e4c9c285aa6">TEST_CASE</a>  ("kj::SkewHeap max-heap comparator", "[skew_heap][max]")</dt>
+<dd><a class="anchor" id="_test000012"></a>Verifies max-heap behavior via custom comparator.  </dd>
+<dt>Member <a class="el" href="test__skew__heap_8cpp.html#a491e20600af02354fbafa9cb67d86e1e">TEST_CASE</a>  ("kj::SkewHeap emplace and move semantics", "[skew_heap][emplace][move]")</dt>
+<dd><a class="anchor" id="_test000013"></a>Verifies emplace and move-push on non-trivial types.  </dd>
+<dt>Member <a class="el" href="test__skew__heap_8cpp.html#a0dbf228d140d43e4e9351c2580e78227">TEST_CASE</a>  ("kj::SkewHeap size and empty observers", "[skew_heap][observers]")</dt>
+<dd><a class="anchor" id="_test000014"></a>Verifies size() and empty() change consistently.  </dd>
+<dt>Member <a class="el" href="test__skew__heap_8cpp.html#a6b4bd750df972677f334a350d0745a0b">TEST_CASE</a>  ("kj::SkewHeapArena behaves like SkewHeap and supports reserve/release", "[skew_heap][pool]")</dt>
+<dd><a class="anchor" id="_test000015"></a>Verifies pool-backed variant behaves identically and supports reservation.  </dd>
 <dt>Member <a class="el" href="test__timer_8cpp.html#a3099e4b6dd553f040cf669925f483ca2">TEST_CASE</a>  ("kj::Timer measures time span", "[timer]")</dt>
-<dd><a class="anchor" id="_test000006"></a>Measures a short time span using <a class="el" href="classkj_1_1_timer.html" title="Manual stopwatch-style timer for measuring elapsed time.">kj::Timer</a> and checks that the elapsed time is within bounds. </dd>
+<dd><a class="anchor" id="_test000016"></a>Measures a short time span using <a class="el" href="classkj_1_1_timer.html" title="Manual stopwatch-style timer for measuring elapsed time.">kj::Timer</a> and checks that the elapsed time is within bounds. </dd>
 <dt>Member <a class="el" href="test__timer_8cpp.html#a5efeeee9d39f7c03c3f9c187447520b1">TEST_CASE</a>  ("kj::ScopedTimer prints label on destruction", "[scoped_timer]")</dt>
-<dd><a class="anchor" id="_test000007"></a>Verifies that <a class="el" href="classkj_1_1_scoped_timer.html" title="Measures and logs the time elapsed between construction and destruction.">kj::ScopedTimer</a> can be constructed and destroyed without error.</dd>
+<dd><a class="anchor" id="_test000017"></a>Verifies that <a class="el" href="classkj_1_1_scoped_timer.html" title="Measures and logs the time elapsed between construction and destruction.">kj::ScopedTimer</a> can be constructed and destroyed without error.</dd>
 </dl>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['result_0',['Result',['../classkj_1_1_result.html',1,'kj']]]
+  ['dsu_0',['DSU',['../structkj_1_1detail_1_1_d_s_u.html',1,'kj::detail']]]
 ];

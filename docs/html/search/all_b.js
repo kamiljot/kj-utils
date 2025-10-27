@@ -1,7 +1,11 @@
 var searchData=
 [
-  ['ok_0',['ok',['../namespacekj.html#a6be28fb06908652c08e20c5ee922f385',1,'kj']]],
-  ['only_20design_1',['Header-Only Design',['../index.html#autotoc_md6',1,'']]],
-  ['operator_3d_2',['operator=',['../classkj_1_1_buffer.html#af6a58fb3075c3e5b71a82aa05db14888',1,'kj::Buffer::operator=(const Buffer &amp;)=delete'],['../classkj_1_1_buffer.html#a57e969b5fb006972757b86aeef991ff9',1,'kj::Buffer::operator=(Buffer &amp;&amp;other) noexcept'],['../classkj_1_1_scope_guard.html#aac729058b9d4b81e59950b77d3259475',1,'kj::ScopeGuard::operator=(const ScopeGuard &amp;)=delete'],['../classkj_1_1_scope_guard.html#ad316711852f8f68c12652290d2fa429d',1,'kj::ScopeGuard::operator=(ScopeGuard &amp;&amp;other) noexcept']]],
-  ['operator_5b_5d_3',['operator[]',['../classkj_1_1_buffer.html#aeea71822483d2593e742a2d6729a5d7b',1,'kj::Buffer::operator[](std::size_t idx) noexcept'],['../classkj_1_1_buffer.html#af1409026a90bc3f5ad7e9b8904f3b264',1,'kj::Buffer::operator[](std::size_t idx) const noexcept']]]
+  ['main_0',['main',['../basic__usage_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'basic_usage.cpp']]],
+  ['make_5fnode_1',['make_node',['../classkj_1_1detail_1_1_skew_heap.html#ae89737a90f575fd6483fbd1678a9c597',1,'kj::detail::SkewHeap']]],
+  ['memory_2ehpp_2',['memory.hpp',['../memory_8hpp.html',1,'']]],
+  ['merge_3',['merge',['../classkj_1_1detail_1_1_skew_heap.html#a68cdeb572b5a40ef2b4874890da53699',1,'kj::detail::SkewHeap']]],
+  ['merge_5fnodes_4',['merge_nodes',['../classkj_1_1detail_1_1_skew_heap.html#a52945f2f0dd896d7b84581ce82f556b4',1,'kj::detail::SkewHeap']]],
+  ['methodology_5',['- ml-scenario-benchmark (planned) – for benchmarking ML workloads with consistent methodology',['../index.html#autotoc_md5',1,'']]],
+  ['ml_20scenario_20benchmark_20planned_20–_20for_20benchmarking_20ml_20workloads_20with_20consistent_20methodology_6',['- ml-scenario-benchmark (planned) – for benchmarking ML workloads with consistent methodology',['../index.html#autotoc_md5',1,'']]],
+  ['ml_20workloads_20with_20consistent_20methodology_7',['- ml-scenario-benchmark (planned) – for benchmarking ML workloads with consistent methodology',['../index.html#autotoc_md5',1,'']]]
 ];

@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['ok_0',['ok',['../namespacekj.html#a6be28fb06908652c08e20c5ee922f385',1,'kj']]],
-  ['operator_3d_1',['operator=',['../classkj_1_1_buffer.html#af6a58fb3075c3e5b71a82aa05db14888',1,'kj::Buffer::operator=(const Buffer &amp;)=delete'],['../classkj_1_1_buffer.html#a57e969b5fb006972757b86aeef991ff9',1,'kj::Buffer::operator=(Buffer &amp;&amp;other) noexcept'],['../classkj_1_1_scope_guard.html#aac729058b9d4b81e59950b77d3259475',1,'kj::ScopeGuard::operator=(const ScopeGuard &amp;)=delete'],['../classkj_1_1_scope_guard.html#ad316711852f8f68c12652290d2fa429d',1,'kj::ScopeGuard::operator=(ScopeGuard &amp;&amp;other) noexcept']]],
-  ['operator_5b_5d_2',['operator[]',['../classkj_1_1_buffer.html#aeea71822483d2593e742a2d6729a5d7b',1,'kj::Buffer::operator[](std::size_t idx) noexcept'],['../classkj_1_1_buffer.html#af1409026a90bc3f5ad7e9b8904f3b264',1,'kj::Buffer::operator[](std::size_t idx) const noexcept']]]
+  ['has_5ferror_0',['has_error',['../classkj_1_1_result.html#a16df5c969948787e2beeea4d0a22d8f6',1,'kj::Result']]],
+  ['has_5fvalue_1',['has_value',['../classkj_1_1_result.html#a10e8ad14bdb3f1e1114315acb9a19327',1,'kj::Result']]]
 ];

@@ -7,21 +7,78 @@ on:
     branches: [ main ]
 
 jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
+  build:
+    name: ${{ matrix.os }} • ${{ matrix.compiler }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: ubuntu-latest, compiler: gcc,   cc: gcc,   cxx: g++ }
+          - { os: ubuntu-latest, compiler: clang, cc: clang, cxx: clang++ }
+          - { os: windows-latest, compiler: msvc }
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
 
-      - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install -y cmake g++ ninja-build
+      # --- Linux setup
+      - name: Setup (Linux)
+        if: startsWith(matrix.os, 'ubuntu')
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake ninja-build
+          echo "CC=${{ matrix.cc }}"  >> $GITHUB_ENV
+          echo "CXX=${{ matrix.cxx }}" >> $GITHUB_ENV
 
-      - name: Configure CMake
-        run: cmake -S . -B build -G Ninja -DKJ_UTILS_ENABLE_TESTS=ON
+      # --- Windows setup
+      - name: Setup (Windows)
+        if: startsWith(matrix.os, 'windows')
+        shell: pwsh
+        run: |
+          choco install ninja --no-progress
+
+      - name: Cache FetchContent deps
+        uses: actions/cache@v4
+        with:
+          path: build/_deps
+          key: deps-${{ runner.os }}-${{ matrix.compiler }}-${{ hashFiles('**/CMakeLists.txt', '**/test/CMakeLists.txt') }}
+          restore-keys: |
+            deps-${{ runner.os }}-${{ matrix.compiler }}-
+            deps-${{ runner.os }}-
+
+      - name: Configure (Release)
+        run: >
+          cmake -S . -B build -G Ninja
+          -DCMAKE_BUILD_TYPE=Release
+          -DKJ_UTILS_ENABLE_TESTS=ON
+          -DKJ_UTILS_BUILD_EXAMPLES=ON
 
       - name: Build
-        run: cmake --build build
+        run: cmake --build build -j
+
+      - name: Ensure test reports dir
+        run: |
+          mkdir -p build/test/reports
+        shell: bash
 
       - name: Run tests
-        run: ctest --test-dir build --output-on-failure
+        run: |
+          if [ "${{ runner.os }}" = "Windows" ] || [ "${{ matrix.os }}" = "windows-latest" ]; then
+            ctest --test-dir build -C Release -j --output-on-failure
+          else
+            ctest --test-dir build -j --output-on-failure
+          fi
+        shell: bash
+
+      - name: Upload test reports (JUnit)
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: junit-${{ matrix.os }}-${{ matrix.compiler }}
+          path: |
+            build/test/reports/*.xml
+          if-no-files-found: warn
+          retention-days: 180

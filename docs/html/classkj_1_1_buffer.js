@@ -1,6 +1,6 @@
 var classkj_1_1_buffer =
 [
-    [ "Buffer", "classkj_1_1_buffer.html#aabaeed60dc0f340c3cba5d69f09e09a3", null ],
+    [ "Buffer", "classkj_1_1_buffer.html#af938341eaf8cb99a9aa1c81f5a983462", null ],
     [ "Buffer", "classkj_1_1_buffer.html#a02526167a527fbdee9c6fe6905254a8c", null ],
     [ "Buffer", "classkj_1_1_buffer.html#ad4c15de84eca96c1c336df3dba1fb5a6", null ],
     [ "~Buffer", "classkj_1_1_buffer.html#a6741cb3064b0332a4ef4afa6963d602a", null ],

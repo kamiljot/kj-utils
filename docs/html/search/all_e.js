@@ -1,15 +1,14 @@
 var searchData=
 [
-  ['samples_0',['samples',['../structkj_1_1_benchmark_result.html#a0b95158bb7e353da390e9073781b2b62',1,'kj::BenchmarkResult']]],
-  ['scope_5fexit_1',['scope_exit',['../namespacekj.html#a5475de45d586f06cc1449dab729a93ae',1,'kj']]],
-  ['scope_5fguard_2ehpp_2',['scope_guard.hpp',['../scope__guard_8hpp.html',1,'']]],
-  ['scopedtimer_3',['ScopedTimer',['../classkj_1_1_scoped_timer.html',1,'kj::ScopedTimer'],['../classkj_1_1_scoped_timer.html#ac0daceed6863efbf228e90ed1b257901',1,'kj::ScopedTimer::ScopedTimer()']]],
-  ['scopeguard_4',['ScopeGuard',['../classkj_1_1_scope_guard.html',1,'kj::ScopeGuard&lt; F &gt;'],['../classkj_1_1_scope_guard.html#ad45ce9e50663d6effbf9f12fe2401706',1,'kj::ScopeGuard::ScopeGuard(F &amp;&amp;f) noexcept'],['../classkj_1_1_scope_guard.html#addbab1578dc5a8062c5405e9792da749',1,'kj::ScopeGuard::ScopeGuard(const ScopeGuard &amp;)=delete'],['../classkj_1_1_scope_guard.html#ac4fcf6bedc50ede0f2dbe39934a1c020',1,'kj::ScopeGuard::ScopeGuard(ScopeGuard &amp;&amp;other) noexcept']]],
-  ['size_5',['size',['../classkj_1_1_buffer.html#a71b6f635b3a81da3b19feb0508509955',1,'kj::Buffer']]],
-  ['size_5f_6',['size_',['../classkj_1_1_buffer.html#ab65f171955e0a02985e2d32e9f5733e8',1,'kj::Buffer']]],
-  ['span_7',['span',['../classkj_1_1_buffer.html#a0a0ab09ff0cb71222078a7da898838f5',1,'kj::Buffer::span() noexcept'],['../classkj_1_1_buffer.html#adce921d4141762c4fbffc742fe6b442e',1,'kj::Buffer::span() const noexcept']]],
-  ['start_8',['start',['../classkj_1_1_timer.html#aab545cb5ba9aeb9f510cac649ec14e2e',1,'kj::Timer']]],
-  ['start_5f_9',['start_',['../classkj_1_1_scoped_timer.html#aa476b9664d6aea03d8c4a6eaa4ba6c61',1,'kj::ScopedTimer::start_'],['../classkj_1_1_timer.html#ae7cb143eb8b8875455864b7a93544e24',1,'kj::Timer::start_']]],
-  ['stop_10',['stop',['../classkj_1_1_timer.html#a5d7782922b1b7d1784b2cc6e1e43213a',1,'kj::Timer']]],
-  ['storage_5f_11',['storage_',['../classkj_1_1_result.html#a061ea7f392706cefd590cf7a602bd83d',1,'kj::Result']]]
+  ['p_0',['p',['../structkj_1_1detail_1_1_d_s_u.html#ae24ae6707d7a7484be228263e9c66f8e',1,'kj::detail::DSU::p'],['../structkj_1_1detail_1_1_rollback_d_s_u.html#a838923028f7417e3819a11edc819be44',1,'kj::detail::RollbackDSU::p']]],
+  ['planned_20–_20for_20benchmarking_20ml_20workloads_20with_20consistent_20methodology_1',['- ml-scenario-benchmark (planned) – for benchmarking ML workloads with consistent methodology',['../index.html#autotoc_md5',1,'']]],
+  ['pool_5f_2',['pool_',['../classkj_1_1detail_1_1_skew_heap.html#a421d05100f23656f175843f0bfe3e8c5',1,'kj::detail::SkewHeap']]],
+  ['poolt_3',['PoolT',['../classkj_1_1detail_1_1_skew_heap.html#a5867d52983d422d4888c6a381059f5a4',1,'kj::detail::SkewHeap']]],
+  ['pop_4',['pop',['../classkj_1_1detail_1_1_skew_heap.html#a756f5661013d933a93bad8e4847290b4',1,'kj::detail::SkewHeap']]],
+  ['projects_20using_20kj_20utils_5',['Projects Using kj-utils',['../index.html#autotoc_md4',1,'']]],
+  ['ptr_6',['ptr',['../structkj_1_1detail_1_1_object_pool_1_1_block.html#ad525675251e33c91c60299cbe3055508',1,'kj::detail::ObjectPool::Block']]],
+  ['ptr_5f_7',['ptr_',['../classkj_1_1io_1_1_fast_input.html#a458e278a88f2c8c3abd739c25d693ed7',1,'kj::io::FastInput::ptr_'],['../classkj_1_1io_1_1_fast_output.html#a3cf3aa2674e3f8d9bd06e32878a4123b',1,'kj::io::FastOutput::ptr_']]],
+  ['purpose_8',['Purpose',['../index.html#autotoc_md2',1,'']]],
+  ['push_9',['push',['../classkj_1_1detail_1_1_skew_heap.html#ad9d016170935a02fa65a3aa7d287bffc',1,'kj::detail::SkewHeap::push(const T &amp;v)'],['../classkj_1_1detail_1_1_skew_heap.html#a5c3f70b3b026df0bb6ec0a7dac763bd2',1,'kj::detail::SkewHeap::push(T &amp;&amp;v)']]],
+  ['put_5fchar_10',['put_char',['../classkj_1_1io_1_1_fast_output.html#a71bad1edb26935598aee8dbe11a75410',1,'kj::io::FastOutput']]]
 ];

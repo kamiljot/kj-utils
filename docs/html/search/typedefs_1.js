@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['view_0',['View',['../namespacekj.html#a96ee5b297f31b845b483c9577dbc4a28',1,'kj']]]
+  ['dsu_0',['DSU',['../namespacekj.html#a6fe8a263519cd5ca6cdbc933f739559b',1,'kj']]]
 ];

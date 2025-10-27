@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['main_0',['main',['../basic__usage_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'basic_usage.cpp']]]
+  ['grow_5f_0',['grow_',['../classkj_1_1detail_1_1_object_pool.html#a1c39f5d7e68930d9dbff239d943e71b0',1,'kj::detail::ObjectPool']]]
 ];

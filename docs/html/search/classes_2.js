@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['scopedtimer_0',['ScopedTimer',['../classkj_1_1_scoped_timer.html',1,'kj']]],
-  ['scopeguard_1',['ScopeGuard',['../classkj_1_1_scope_guard.html',1,'kj']]]
+  ['fastinput_0',['FastInput',['../classkj_1_1io_1_1_fast_input.html',1,'kj::io']]],
+  ['fastoutput_1',['FastOutput',['../classkj_1_1io_1_1_fast_output.html',1,'kj::io']]]
 ];
