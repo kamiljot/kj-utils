@@ -40,11 +40,11 @@ add_library(kj-utils ALIAS kj_utils)
 # Examples (optional)
 # ---------------------------------------------------------------------
 if (KJ_UTILS_BUILD_EXAMPLES)
-  add_executable(example
-    examples/basic_usage.cpp
-    examples/a_skew_heap_template.cpp
-  )
-  target_link_libraries(example PRIVATE kj::utils)
+  add_executable(example_basic examples/basic_usage.cpp)
+  target_link_libraries(example_basic PRIVATE kj::utils)
+
+  add_executable(example_skew_heap examples/a_skew_heap_template.cpp)
+  target_link_libraries(example_skew_heap PRIVATE kj::utils)
   # No need to add include dirs explicitly; they're inherited from the INTERFACE link
 endif()
 
