@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['scenario_20benchmark_20planned_20–_20for_20benchmarking_20ml_20workloads_20with_20consistent_20methodology_0',['- ml-scenario-benchmark (planned) – for benchmarking ML workloads with consistent methodology',['../index.html#autotoc_md5',1,'']]]
+  ['result_20scopeguard_20timer_0',['Result + ScopeGuard + Timer',['../index.html#autotoc_md11',1,'']]],
+  ['roadmap_1',['Roadmap',['../index.html#autotoc_md16',1,'']]]
 ];

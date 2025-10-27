@@ -93,127 +93,212 @@ $(function(){initNavTree('index.html','',''); });
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md__r_e_a_d_m_e"></a></p>
-<p>kj-utils is a modern, header-only C++23 utility library that provides foundational building blocks for high-performance and clean C++ applications. It focuses on RAII, modularity, and cross-platform usability - with zero dependencies and maximum portability.</p>
+<p><b>kj-utils</b> is a modern, header-only C++ utility library (C++17/20/23) that provides foundational building blocks for high-performance and clean C++ applications. It focuses on RAII, modularity, and cross-platform usability - with zero external dependencies and maximum portability.</p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
-Features</h1>
-<p>This library provides a curated set of reusable components:</p>
+Table of Contents</h1>
 <ul>
+<li>Features</li>
+<li>Purpose</li>
+<li>Quick Start<ul>
+<li>As a submodule</li>
+</ul>
+</li>
+<li>Build &amp; Tests<ul>
+<li><a class="el" href="dir_d28a4824dc47e487b107a5db32ef43c4.html">Examples</a></li>
+<li>Tested Toolchains</li>
+</ul>
+</li>
+<li>Documentation</li>
+<li>Example Snippets<ul>
+<li>Result + ScopeGuard + Timer</li>
+<li>DSU</li>
+<li>Skew Heap (pool-backed)</li>
+</ul>
+</li>
+<li>Integration Notes</li>
+<li>Projects Using kj-utils</li>
+<li>Roadmap</li>
+<li>License</li>
+<li>Author</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
+Features</h1>
+<p>Reusable components, all in the <span class="tt">kj::</span> namespace:</p>
+<ul>
+<li><b>Core</b><ul>
 <li><span class="tt">kj::Buffer&lt;T&gt;</span> - RAII-managed aligned buffer with move semantics</li>
-<li><span class="tt">kj::View&lt;T&gt;</span> - friendly aliases and helpers around <span class="tt">std::span</span></li>
+<li><span class="tt">kj::View&lt;T&gt;</span> - friendly aliases &amp; helpers around <span class="tt">std::span</span></li>
+<li><span class="tt">kj::ScopeGuard</span> - deterministic cleanup (scope_exit pattern)</li>
 <li><span class="tt">kj::Timer</span> / <span class="tt">kj::ScopedTimer</span> - precise wall-clock timing tools</li>
-<li><span class="tt">kj::ScopeGuard</span> - deterministic resource cleanup (like <span class="tt">scope_exit</span>)</li>
-<li><span class="tt">kj::Benchmark</span> - minimalistic benchmarking loop with warmup and stats</li>
-<li><span class="tt">kj::Result&lt;T&gt;</span> - lightweight <span class="tt">expected&lt;T, E&gt;</span> implementation</li>
+<li><span class="tt">kj::Benchmark</span> - minimal benchmarking loop with warmup &amp; statistics</li>
+<li><span class="tt">kj::Result&lt;T, E&gt;</span> - lightweight <span class="tt">expected</span>-like result type</li>
 <li><span class="tt">kj::memory</span> - aligned <span class="tt">new</span>/<span class="tt">delete</span> helpers (cross-platform)</li>
 </ul>
-<p>All components are header-only, live in the <span class="tt">kj::</span> namespace, and follow modern C++20/23 idioms.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
-Purpose</h1>
-<p>This library was created to:</p>
-<ul>
-<li>Eliminate boilerplate in performance-critical C++ apps</li>
-<li>Unify helpers used across GPU/kernel benchmarking and ML scenarios</li>
-<li>Promote modular design using clean, well-scoped utilities</li>
-<li>Enable reuse across tools like <span class="tt">gpu-kernel-benchmark</span> and future infrastructure</li>
+</li>
+<li><b>I/O</b><ul>
+<li><span class="tt">kj::io::FastInput</span> / <span class="tt">kj::io::FastOutput</span> - fast buffered stdin/stdout for CP/ICPC</li>
 </ul>
-<p>It emerged from practical needs in benchmarking GPU workloads and building fast, clean abstractions in C++.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
-Example Use</h1>
-<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="buffer_8hpp.html">kj/buffer.hpp</a>&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="benchmark_8hpp.html">kj/benchmark.hpp</a>&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="result_8hpp.html">kj/result.hpp</a>&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="scope__guard_8hpp.html">kj/scope_guard.hpp</a>&gt;</span></div>
-<div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> <a class="code hl_function" href="basic__usage_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a>() {</div>
-<div class="line">    <a class="code hl_class" href="classkj_1_1_buffer.html">kj::Buffer&lt;int&gt;</a> data(100, 64);         <span class="comment">// aligned buffer</span></div>
-<div class="line">    <a class="code hl_class" href="classkj_1_1_scoped_timer.html">kj::ScopedTimer</a> timer(<span class="stringliteral">&quot;Sleep&quot;</span>);</div>
-<div class="line">    std::this_thread::sleep_for(std::chrono::milliseconds(100));</div>
-<div class="line">    <span class="comment">// RAII guarantees cleanup on scope exit</span></div>
-<div class="line">}</div>
-<div class="ttc" id="abasic__usage_8cpp_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="basic__usage_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdoc">Demonstrates basic usage of kj-utils components.</div><div class="ttdef"><b>Definition</b> basic_usage.cpp:40</div></div>
-<div class="ttc" id="abenchmark_8hpp_html"><div class="ttname"><a href="benchmark_8hpp.html">benchmark.hpp</a></div></div>
-<div class="ttc" id="abuffer_8hpp_html"><div class="ttname"><a href="buffer_8hpp.html">buffer.hpp</a></div></div>
-<div class="ttc" id="aclasskj_1_1_buffer_html"><div class="ttname"><a href="classkj_1_1_buffer.html">kj::Buffer</a></div><div class="ttdoc">A simple RAII wrapper around aligned heap-allocated memory.</div><div class="ttdef"><b>Definition</b> buffer.hpp:28</div></div>
-<div class="ttc" id="aclasskj_1_1_scoped_timer_html"><div class="ttname"><a href="classkj_1_1_scoped_timer.html">kj::ScopedTimer</a></div><div class="ttdoc">Measures and logs the time elapsed between construction and destruction.</div><div class="ttdef"><b>Definition</b> timer.hpp:25</div></div>
-<div class="ttc" id="aresult_8hpp_html"><div class="ttname"><a href="result_8hpp.html">result.hpp</a></div></div>
-<div class="ttc" id="ascope__guard_8hpp_html"><div class="ttname"><a href="scope__guard_8hpp.html">scope_guard.hpp</a></div></div>
-</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
-Projects Using kj-utils</h1>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p><ul>
-<li>gpu-kernel-benchmark – modular tool for GPU kernel measurement (CUDA) </li>
+</li>
+<li><b>Data Structures</b><ul>
+<li><span class="tt">kj::SkewHeap&lt;T, Comp&gt;</span> - mergeable heap (min-heap by default)</li>
+<li><span class="tt">kj::SkewHeapArena&lt;T, Comp&gt;</span> - same API, backed by an internal object pool</li>
+<li><span class="tt">kj::DSU</span> - disjoint set union (union-by-size + path compression)</li>
+<li><span class="tt">kj::RollbackDSU</span> - DSU with snapshots and rollback (no path compression)</li>
 </ul>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
-- ml-scenario-benchmark (planned) – for benchmarking ML workloads with consistent methodology</h1>
-<ul>
-<li>gpu-kernel-benchmark - modular tool for GPU kernel measurement (CUDA)</li>
-<li>ml-scenario-benchmark (planned) - for benchmarking ML workloads with consistent methodology <blockquote class="doxtable">
-<blockquote class="doxtable">
-<blockquote class="doxtable">
-<blockquote class="doxtable">
-<blockquote class="doxtable">
-<blockquote class="doxtable">
-<blockquote class="doxtable">
-<p>bd68443716ba43e579af9720ca62c8f0cfd612d6 </p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
+</li>
+<li><b>Memory Utilities</b><ul>
+<li><span class="tt">kj::detail::ObjectPool&lt;T&gt;</span> - reusable object pool with free-list</li>
+</ul>
 </li>
 </ul>
-<p>kj-utils can also be reused in embedded systems, HPC pipelines, game engines, or any modern C++ project.</p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
-Documentation</h2>
-<p>All headers use Doxygen-style comments. You can generate documentation locally:</p>
-<div class="fragment"><div class="line">doxygen Doxyfile</div>
-</div><!-- fragment --><p>This will create <span class="tt">docs/html/index.html</span> with full API reference.</p>
+<p>All components are header-only and follow modern C++17/20/23 idioms (constexpr where possible, <span class="tt">[[nodiscard]]</span>, <span class="tt">noexcept</span> where sensible, concepts-friendly).</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
+Purpose</h1>
+<ul>
+<li>Eliminate boilerplate in performance-critical C++ code.</li>
+<li>Provide clean, well-scoped utilities used across competitive programming (ICPC), systems, and HPC contexts.</li>
+<li>Encourage modular design and reuse (small, composable headers).</li>
+<li>Keep builds simple: header-only, zero external deps.</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
+Quick Start</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
+As a submodule</h2>
+<div class="fragment"><div class="line">git submodule add https://github.com/kamiljot/kj-utils extern/kj-utils</div>
+</div><!-- fragment --><p>CMake:</p>
+<div class="fragment"><div class="line">add_library(kj-utils INTERFACE)</div>
+<div class="line">target_include_directories(kj-utils INTERFACE ${CMAKE_SOURCE_DIR}/extern/kj-utils/include)</div>
+<div class="line"> </div>
+<div class="line">add_executable(app main.cpp)</div>
+<div class="line">target_link_libraries(app PRIVATE kj-utils)</div>
+</div><!-- fragment --><p>Code:</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="skew__heap_8hpp.html">kj/skew_heap.hpp</a>&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="fast__io_8hpp.html">kj/io/fast_io.hpp</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> <a class="code hl_function" href="a__skew__heap__template_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a>() {</div>
+<div class="line">  <a class="code hl_class" href="classkj_1_1io_1_1_fast_input.html">kj::io::FastInput</a> in;</div>
+<div class="line">  <a class="code hl_class" href="classkj_1_1io_1_1_fast_output.html">kj::io::FastOutput</a> out;</div>
+<div class="line"> </div>
+<div class="line">  <span class="keywordtype">int</span> n; <span class="keywordflow">if</span> (!in.<a class="code hl_function" href="classkj_1_1io_1_1_fast_input.html#a37188d05c51e1a573245dff75ed71fd6">read</a>(n)) <span class="keywordflow">return</span> 0;</div>
+<div class="line">  <a class="code hl_typedef" href="namespacekj.html#a0e00deb2a15bbc80df64003089f05379">kj::SkewHeap&lt;int&gt;</a> h;              <span class="comment">// or: kj::SkewHeapArena&lt;int&gt; h; h.reserve_nodes(n);</span></div>
+<div class="line">  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n; ++i) { <span class="keywordtype">int</span> x; in.<a class="code hl_function" href="classkj_1_1io_1_1_fast_input.html#a37188d05c51e1a573245dff75ed71fd6">read</a>(x); h.<a class="code hl_function" href="classkj_1_1detail_1_1_skew_heap.html#ad9d016170935a02fa65a3aa7d287bffc">push</a>(x); }</div>
+<div class="line">  <span class="keywordflow">while</span> (!h.<a class="code hl_function" href="classkj_1_1detail_1_1_skew_heap.html#a84c3e6c8ef0705fc2ca19cb25ce1b443">empty</a>()) { out.<a class="code hl_function" href="classkj_1_1io_1_1_fast_output.html#a7437e1cbebcbe72c961d1d509d706cab">write_int</a>(h.<a class="code hl_function" href="classkj_1_1detail_1_1_skew_heap.html#a6a06385f13a0181f541d3f24dd1c93e0">top</a>()).<a class="code hl_function" href="classkj_1_1io_1_1_fast_output.html#a71bad1edb26935598aee8dbe11a75410">put_char</a>(<span class="charliteral">&#39; &#39;</span>); h.<a class="code hl_function" href="classkj_1_1detail_1_1_skew_heap.html#a756f5661013d933a93bad8e4847290b4">pop</a>(); }</div>
+<div class="line">  out.<a class="code hl_function" href="classkj_1_1io_1_1_fast_output.html#ab7343cc70549dc0e3ca27fb5e6c23878">write_line</a>();</div>
+<div class="line">}</div>
+<div class="ttc" id="aa__skew__heap__template_8cpp_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="a__skew__heap__template_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdef"><b>Definition</b> a_skew_heap_template.cpp:13</div></div>
+<div class="ttc" id="aclasskj_1_1detail_1_1_skew_heap_html_a6a06385f13a0181f541d3f24dd1c93e0"><div class="ttname"><a href="classkj_1_1detail_1_1_skew_heap.html#a6a06385f13a0181f541d3f24dd1c93e0">kj::detail::SkewHeap::top</a></div><div class="ttdeci">const T &amp; top() const noexcept</div><div class="ttdef"><b>Definition</b> skew_heap_impl.hpp:174</div></div>
+<div class="ttc" id="aclasskj_1_1detail_1_1_skew_heap_html_a756f5661013d933a93bad8e4847290b4"><div class="ttname"><a href="classkj_1_1detail_1_1_skew_heap.html#a756f5661013d933a93bad8e4847290b4">kj::detail::SkewHeap::pop</a></div><div class="ttdeci">void pop()</div><div class="ttdef"><b>Definition</b> skew_heap_impl.hpp:195</div></div>
+<div class="ttc" id="aclasskj_1_1detail_1_1_skew_heap_html_a84c3e6c8ef0705fc2ca19cb25ce1b443"><div class="ttname"><a href="classkj_1_1detail_1_1_skew_heap.html#a84c3e6c8ef0705fc2ca19cb25ce1b443">kj::detail::SkewHeap::empty</a></div><div class="ttdeci">bool empty() const noexcept</div><div class="ttdef"><b>Definition</b> skew_heap_impl.hpp:172</div></div>
+<div class="ttc" id="aclasskj_1_1detail_1_1_skew_heap_html_ad9d016170935a02fa65a3aa7d287bffc"><div class="ttname"><a href="classkj_1_1detail_1_1_skew_heap.html#ad9d016170935a02fa65a3aa7d287bffc">kj::detail::SkewHeap::push</a></div><div class="ttdeci">void push(const T &amp;v)</div><div class="ttdef"><b>Definition</b> skew_heap_impl.hpp:181</div></div>
+<div class="ttc" id="aclasskj_1_1io_1_1_fast_input_html"><div class="ttname"><a href="classkj_1_1io_1_1_fast_input.html">kj::io::FastInput</a></div><div class="ttdoc">Fast buffered input reader for competitive programming.</div><div class="ttdef"><b>Definition</b> fast_io.hpp:27</div></div>
+<div class="ttc" id="aclasskj_1_1io_1_1_fast_input_html_a37188d05c51e1a573245dff75ed71fd6"><div class="ttname"><a href="classkj_1_1io_1_1_fast_input.html#a37188d05c51e1a573245dff75ed71fd6">kj::io::FastInput::read</a></div><div class="ttdeci">bool read(T &amp;out)</div><div class="ttdoc">Reads a signed/unsigned integer type.</div><div class="ttdef"><b>Definition</b> fast_io.hpp:38</div></div>
+<div class="ttc" id="aclasskj_1_1io_1_1_fast_output_html"><div class="ttname"><a href="classkj_1_1io_1_1_fast_output.html">kj::io::FastOutput</a></div><div class="ttdoc">Fast buffered output writer for competitive programming.</div><div class="ttdef"><b>Definition</b> fast_io.hpp:128</div></div>
+<div class="ttc" id="aclasskj_1_1io_1_1_fast_output_html_a71bad1edb26935598aee8dbe11a75410"><div class="ttname"><a href="classkj_1_1io_1_1_fast_output.html#a71bad1edb26935598aee8dbe11a75410">kj::io::FastOutput::put_char</a></div><div class="ttdeci">FastOutput &amp; put_char(char c)</div><div class="ttdef"><b>Definition</b> fast_io.hpp:139</div></div>
+<div class="ttc" id="aclasskj_1_1io_1_1_fast_output_html_a7437e1cbebcbe72c961d1d509d706cab"><div class="ttname"><a href="classkj_1_1io_1_1_fast_output.html#a7437e1cbebcbe72c961d1d509d706cab">kj::io::FastOutput::write_int</a></div><div class="ttdeci">FastOutput &amp; write_int(T x)</div><div class="ttdef"><b>Definition</b> fast_io.hpp:156</div></div>
+<div class="ttc" id="aclasskj_1_1io_1_1_fast_output_html_ab7343cc70549dc0e3ca27fb5e6c23878"><div class="ttname"><a href="classkj_1_1io_1_1_fast_output.html#ab7343cc70549dc0e3ca27fb5e6c23878">kj::io::FastOutput::write_line</a></div><div class="ttdeci">FastOutput &amp; write_line()</div><div class="ttdef"><b>Definition</b> fast_io.hpp:167</div></div>
+<div class="ttc" id="afast__io_8hpp_html"><div class="ttname"><a href="fast__io_8hpp.html">fast_io.hpp</a></div></div>
+<div class="ttc" id="anamespacekj_html_a0e00deb2a15bbc80df64003089f05379"><div class="ttname"><a href="namespacekj.html#a0e00deb2a15bbc80df64003089f05379">kj::SkewHeap</a></div><div class="ttdeci">::kj::detail::SkewHeap&lt; T, Comp, false &gt; SkewHeap</div><div class="ttdoc">Public alias for a standard skew heap (min-heap by default).</div><div class="ttdef"><b>Definition</b> skew_heap.hpp:11</div></div>
+<div class="ttc" id="askew__heap_8hpp_html"><div class="ttname"><a href="skew__heap_8hpp.html">skew_heap.hpp</a></div></div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
+Build &amp; Tests</h1>
+<p>This repository includes a simple CMake setup for examples and tests.</p>
+<div class="fragment"><div class="line">cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DKJ_UTILS_ENABLE_TESTS=ON -DKJ_UTILS_BUILD_EXAMPLES=ON</div>
+<div class="line">cmake --build build -j</div>
+<div class="line">ctest --test-dir build -j --output-on-failure</div>
+</div><!-- fragment --><blockquote class="doxtable">
+<p>Windows/PowerShell tips:</p><ul>
+<li>Clean build dir: <span class="tt">Remove-Item -Recurse -Force .\\build\\</span></li>
+<li>If CTest reports JUnit write errors, ensure the reports directory exists: <span class="tt">New-Item -ItemType Directory -Force .\\build\\test\\reports | Out-Null</span> </li>
+</ul>
+</blockquote>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
-Header-Only Design</h2>
-<p>No build steps. Just:</p>
-<div class="fragment"><div class="line">git clone https://github.com/yourname/kj-utils</div>
-</div><!-- fragment --><p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
-Then include what you need. That’s it.</h1>
-<p>Then include what you need. That's it. </p><blockquote class="doxtable">
-<blockquote class="doxtable">
-<blockquote class="doxtable">
-<blockquote class="doxtable">
-<blockquote class="doxtable">
-<blockquote class="doxtable">
-<blockquote class="doxtable">
-<p>bd68443716ba43e579af9720ca62c8f0cfd612d6 </p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md9"></a>
-License</h2>
-<p>Licensed under the MIT License. Free for open source and commercial use.</p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md10"></a>
-Author</h2>
-<p>Developed by Kamil Jatkowski to support clean and modular C++ systems built around performance, simplicity, and reuse. </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md11"></a>
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</h1>
-<blockquote class="doxtable">
-<blockquote class="doxtable">
-<blockquote class="doxtable">
-<blockquote class="doxtable">
-<blockquote class="doxtable">
-<blockquote class="doxtable">
-<blockquote class="doxtable">
-<p>bd68443716ba43e579af9720ca62c8f0cfd612d6 </p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
+Examples</h2>
+<p>If <span class="tt">KJ_UTILS_BUILD_EXAMPLES=ON</span>, an example binary is built:</p>
+<div class="fragment"><div class="line">./build/example</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
+Tested Toolchains</h2>
+<ul>
+<li>MSVC 19.3x (VS 2022), Clang â‰¥ 15, GCC â‰¥ 11</li>
+<li>Library headers are C++17-compatible; the top-level CMake uses C++23 by default. <br  />
+ If you need C++20, set: <div class="fragment"><div class="line">set(CMAKE_CXX_STANDARD 20)</div>
+<div class="line">target_compile_features(kj_utils INTERFACE cxx_std_20)</div>
+</div><!-- fragment --></li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md9"></a>
+Documentation</h1>
+<p>All headers use Doxygen-style comments. Generate docs locally:</p>
+<div class="fragment"><div class="line">doxygen Doxyfile</div>
+</div><!-- fragment --><p>This will create <span class="tt">docs/html/index.html</span> with the full API reference.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md10"></a>
+Example Snippets</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md11"></a>
+Result + ScopeGuard + Timer</h2>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="result_8hpp.html">kj/result.hpp</a>&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="scope__guard_8hpp.html">kj/scope_guard.hpp</a>&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="timer_8hpp.html">kj/timer.hpp</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_class" href="classkj_1_1_result.html">kj::Result&lt;int, const char*&gt;</a> do_work() {</div>
+<div class="line">  <a class="code hl_class" href="classkj_1_1_scoped_timer.html">kj::ScopedTimer</a> t(<span class="stringliteral">&quot;do_work&quot;</span>);</div>
+<div class="line">  <span class="keyword">auto</span> guard = <a class="code hl_class" href="classkj_1_1_scope_guard.html">kj::ScopeGuard</a>([] { <span class="comment">/* cleanup */</span> });</div>
+<div class="line">  <span class="comment">// ...</span></div>
+<div class="line">  <span class="keywordflow">return</span> <a class="code hl_function" href="namespacekj.html#a6be28fb06908652c08e20c5ee922f385">kj::ok&lt;int&gt;</a>(42);</div>
+<div class="line">}</div>
+<div class="ttc" id="aclasskj_1_1_result_html"><div class="ttname"><a href="classkj_1_1_result.html">kj::Result</a></div><div class="ttdoc">A lightweight alternative to std::expected for value-or-error return semantics.</div><div class="ttdef"><b>Definition</b> result.hpp:23</div></div>
+<div class="ttc" id="aclasskj_1_1_scope_guard_html"><div class="ttname"><a href="classkj_1_1_scope_guard.html">kj::ScopeGuard</a></div><div class="ttdoc">Executes a cleanup function at scope exit (RAII pattern).</div><div class="ttdef"><b>Definition</b> scope_guard.hpp:23</div></div>
+<div class="ttc" id="aclasskj_1_1_scoped_timer_html"><div class="ttname"><a href="classkj_1_1_scoped_timer.html">kj::ScopedTimer</a></div><div class="ttdoc">Measures and logs the time elapsed between construction and destruction.</div><div class="ttdef"><b>Definition</b> timer.hpp:25</div></div>
+<div class="ttc" id="anamespacekj_html_a6be28fb06908652c08e20c5ee922f385"><div class="ttname"><a href="namespacekj.html#a6be28fb06908652c08e20c5ee922f385">kj::ok</a></div><div class="ttdeci">Result&lt; T, E &gt; ok(T &amp;&amp;value)</div><div class="ttdoc">Creates a Result representing a successful outcome.</div><div class="ttdef"><b>Definition</b> result.hpp:112</div></div>
+<div class="ttc" id="aresult_8hpp_html"><div class="ttname"><a href="result_8hpp.html">result.hpp</a></div></div>
+<div class="ttc" id="ascope__guard_8hpp_html"><div class="ttname"><a href="scope__guard_8hpp.html">scope_guard.hpp</a></div></div>
+<div class="ttc" id="atimer_8hpp_html"><div class="ttname"><a href="timer_8hpp.html">timer.hpp</a></div></div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md12"></a>
+DSU</h2>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="dsu_8hpp.html">kj/dsu.hpp</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_typedef" href="namespacekj.html#a6fe8a263519cd5ca6cdbc933f739559b">kj::DSU</a> dsu(5);</div>
+<div class="line">dsu.unite(0,1);</div>
+<div class="line"><span class="keywordtype">bool</span> same = dsu.same(0,1); <span class="comment">// true</span></div>
+<div class="line"><span class="keywordtype">int</span> sz = dsu.size(0);      <span class="comment">// 2</span></div>
+<div class="ttc" id="adsu_8hpp_html"><div class="ttname"><a href="dsu_8hpp.html">dsu.hpp</a></div></div>
+<div class="ttc" id="anamespacekj_html_a6fe8a263519cd5ca6cdbc933f739559b"><div class="ttname"><a href="namespacekj.html#a6fe8a263519cd5ca6cdbc933f739559b">kj::DSU</a></div><div class="ttdeci">::kj::detail::DSU DSU</div><div class="ttdoc">Public alias for the classic (path-compressing) DSU implementation.</div><div class="ttdef"><b>Definition</b> dsu.hpp:11</div></div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md13"></a>
+Skew Heap (pool-backed)</h2>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="skew__heap_8hpp.html">kj/skew_heap.hpp</a>&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;functional&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_typedef" href="namespacekj.html#a308bf383713b98a731eba354a520aab7">kj::SkewHeapArena&lt;int, std::greater&lt;int&gt;</a>&gt; h; <span class="comment">// max-heap variant</span></div>
+<div class="line">h.<a class="code hl_function" href="classkj_1_1detail_1_1_skew_heap.html#a4990579b402042c681f8dce9e54e8bc9">reserve_nodes</a>(100000);                      <span class="comment">// optional prealloc</span></div>
+<div class="line">h.<a class="code hl_function" href="classkj_1_1detail_1_1_skew_heap.html#ad9d016170935a02fa65a3aa7d287bffc">push</a>(7); h.<a class="code hl_function" href="classkj_1_1detail_1_1_skew_heap.html#ad9d016170935a02fa65a3aa7d287bffc">push</a>(3); h.<a class="code hl_function" href="classkj_1_1detail_1_1_skew_heap.html#ad9d016170935a02fa65a3aa7d287bffc">push</a>(9);</div>
+<div class="line"><span class="keywordtype">int</span> top = h.<a class="code hl_function" href="classkj_1_1detail_1_1_skew_heap.html#a6a06385f13a0181f541d3f24dd1c93e0">top</a>(); <span class="comment">// 9</span></div>
+<div class="ttc" id="aclasskj_1_1detail_1_1_skew_heap_html_a4990579b402042c681f8dce9e54e8bc9"><div class="ttname"><a href="classkj_1_1detail_1_1_skew_heap.html#a4990579b402042c681f8dce9e54e8bc9">kj::detail::SkewHeap::reserve_nodes</a></div><div class="ttdeci">void reserve_nodes(std::size_t n)</div><div class="ttdoc">Pre-allocates approximately n node slots in the internal pool. No-op if UsePool is false.</div><div class="ttdef"><b>Definition</b> skew_heap_impl.hpp:140</div></div>
+<div class="ttc" id="anamespacekj_html_a308bf383713b98a731eba354a520aab7"><div class="ttname"><a href="namespacekj.html#a308bf383713b98a731eba354a520aab7">kj::SkewHeapArena</a></div><div class="ttdeci">::kj::detail::SkewHeap&lt; T, Comp, true &gt; SkewHeapArena</div><div class="ttdoc">Public alias for a skew heap backed by an internal object pool.</div><div class="ttdef"><b>Definition</b> skew_heap.hpp:20</div></div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md14"></a>
+Integration Notes</h1>
+<ul>
+<li><b>Header-only</b>: just add <span class="tt">include/</span> to your include paths.</li>
+<li><b>No exceptions policy</b>: most utilities avoid throwing; error paths use <span class="tt">kj::Result</span> or boolean returns where appropriate.</li>
+<li><b>Allocator friendliness</b>: some DS (e.g., <span class="tt">SkewHeapArena</span>) use an internal pool to reduce allocation overhead in heavy workloads.</li>
+<li><b>Modularity</b>: public headers are thin aliases; implementation lives under <span class="tt">kj/detail/</span>.</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md15"></a>
+Projects Using kj-utils</h1>
+<ul>
+<li><span class="tt">gpu-kernel-benchmark</span> - modular tool for GPU kernel measurement (CUDA)</li>
+<li><span class="tt">ml-scenario-benchmark</span> (planned) - benchmarking ML workloads with consistent methodology</li>
+</ul>
+<p>kj-utils can also be reused in embedded systems, HPC pipelines, game engines, competitive programming/ICPC, or any modern C++ project.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md16"></a>
+Roadmap</h1>
+<ul>
+<li>Additional DS/algorithms (Fenwick/Segment Tree, Pairing Heap, Dinic)</li>
+<li>Optional <span class="tt">std::pmr</span> adapters</li>
+<li>Example ICPC templates</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md17"></a>
+License</h1>
+<p>MIT License - free for open source and commercial use.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md18"></a>
+Author</h1>
+<p>Developed by <b>Kamil Jatkowski</b> to support clean and modular C++ systems built around performance, simplicity, and reuse. </p>
 </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->

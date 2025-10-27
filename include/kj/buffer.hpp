@@ -1,28 +1,22 @@
 #pragma once
 
 #include <cstddef>
-#include <memory>
-#include <utility>
 #include <span>
+#include <utility>
 #include <stdexcept>
-#include <cstdlib>
-#include <iostream>
+#include <algorithm> // std::max
 
-
-#if defined(_MSC_VER)
-#include <malloc.h>  // _aligned_malloc / _aligned_free for MSVC
-#endif
+#include <kj/memory.hpp>
 
 namespace kj {
 
 	/**
 	 * @brief A simple RAII wrapper around aligned heap-allocated memory.
 	 *
-	 * This class manages a typed, contiguous block of memory allocated with
-	 * a specific alignment requirement. It cannot be copied but can be moved.
-	 * Memory is automatically released on destruction.
+	 * Manages a typed, contiguous block allocated with a specific alignment.
+	 * Non-copyable, movable. Memory is released automatically on destruction.
 	 *
-	 * @tparam T The element type stored in the buffer.
+	 * @tparam T Element type stored in the buffer.
 	 */
 	template <typename T>
 	class Buffer {
@@ -30,62 +24,43 @@ namespace kj {
 		/**
 		 * @brief Constructs a buffer with the given size and alignment.
 		 *
-		 * Allocates memory for `size` elements of type `T`, aligned to the given alignment.
+		 * Allocates memory for `size` elements of type `T`, aligned to `alignment`.
+		 * If `size == 0`, no allocation is performed and `data() == nullptr`.
 		 *
-		 * @param size Number of elements to allocate.
-		 * @param alignment Desired byte alignment. Defaults to `alignof(T)`.
+		 * @param size      Number of elements to allocate.
+		 * @param alignment Desired byte alignment. Defaults to max(alignof(T), alignof(void*)).
 		 *
-		 * @throws std::bad_alloc if memory allocation fails.
+		 * @throws std::bad_alloc if allocation fails.
 		 */
-		Buffer(std::size_t size, std::size_t alignment = std::max(alignof(T), alignof(void*))) : size_(size) {
+		explicit Buffer(std::size_t size,
+			std::size_t alignment = std::max<std::size_t>(alignof(T), alignof(void*)))
+			: data_(nullptr), size_(size)
+		{
+			if (size_ == 0) return;
 
-			void* raw = nullptr;
+			// Ensure alignment is at least alignof(T)
+			if (alignment < alignof(T)) alignment = alignof(T);
 
-#if defined(_MSC_VER)
-			raw = _aligned_malloc(size * sizeof(T), alignment);
+			const std::size_t bytes = size_ * sizeof(T);
+			void* raw = kj::aligned_alloc(alignment, bytes);
 			if (!raw) throw std::bad_alloc{};
-#else
-#ifndef NDEBUG
-			int ret = posix_memalign(&raw, alignment, size * sizeof(T));
-			if (ret != 0) {
-				std::cerr << "[kj::Buffer] posix_memalign failed with code " << ret
-					<< " (alignment: " << alignment << ", size: " << size * sizeof(T) << ")\n";
-			}
-#else
-			posix_memalign(&raw, alignment, size * sizeof(T));
-#endif
-
-			if (raw == nullptr)
-				throw std::bad_alloc{};
-
-#endif
 			data_ = static_cast<T*>(raw);
 		}
 
-		/// Deleted copy constructor.
+		// Non-copyable
 		Buffer(const Buffer&) = delete;
-
-		/// Deleted copy assignment.
 		Buffer& operator=(const Buffer&) = delete;
 
-		/**
-		 * @brief Move constructor.
-		 *
-		 * Transfers ownership of the buffer from another instance.
-		 */
-		Buffer(Buffer&& other) noexcept : data_(other.data_), size_(other.size_) {
+		// Movable
+		Buffer(Buffer&& other) noexcept
+			: data_(other.data_), size_(other.size_) {
 			other.data_ = nullptr;
 			other.size_ = 0;
 		}
 
-		/**
-		 * @brief Move assignment operator.
-		 *
-		 * Releases current memory and takes ownership of another buffer's memory.
-		 */
 		Buffer& operator=(Buffer&& other) noexcept {
 			if (this != &other) {
-				cleanup();
+				cleanup_();
 				data_ = other.data_;
 				size_ = other.size_;
 				other.data_ = nullptr;
@@ -94,8 +69,7 @@ namespace kj {
 			return *this;
 		}
 
-		/// Destructor. Frees the allocated memory if any.
-		~Buffer() { cleanup(); }
+		~Buffer() { cleanup_(); }
 
 		/// @return Pointer to the beginning of the buffer (mutable).
 		T* data() noexcept { return data_; }
@@ -106,37 +80,24 @@ namespace kj {
 		/// @return Number of elements in the buffer.
 		std::size_t size() const noexcept { return size_; }
 
-		/**
-		 * @brief Element access operator.
-		 * @param idx Index into the buffer (no bounds checking).
-		 * @return Reference to the element at the given index.
-		 */
-		T& operator[](std::size_t idx) noexcept { return data_[idx]; }
+		/// Element access (no bounds checking).
+		T& operator[](std::size_t i) noexcept { return data_[i]; }
+		const T& operator[](std::size_t i) const noexcept { return data_[i]; }
 
-		/// @copydoc operator[](std::size_t)
-		const T& operator[](std::size_t idx) const noexcept { return data_[idx]; }
-
-		/// @return A mutable std::span representing the buffer.
+		/// Views as std::span
 		std::span<T> span() noexcept { return { data_, size_ }; }
-
-		/// @return A read-only std::span representing the buffer.
 		std::span<const T> span() const noexcept { return { data_, size_ }; }
 
 	private:
-		T* data_ = nullptr;              ///< Pointer to the allocated memory.
-		std::size_t size_ = 0;           ///< Number of elements allocated.
+		T* data_ = nullptr;
+		std::size_t  size_ = 0;
 
-		/// Frees the buffer memory if allocated.
-		void cleanup() {
+		void cleanup_() noexcept {
 			if (data_) {
-#if defined(_MSC_VER)
-				_aligned_free(data_);
-#else
-				std::free(data_);
-#endif
+				kj::aligned_free(static_cast<void*>(data_));
+				data_ = nullptr;
+				size_ = 0;
 			}
-			data_ = nullptr;
-			size_ = 0;
 		}
 	};
 

@@ -95,8 +95,6 @@ $(function(){initNavTree('memory_8hpp.html','',''); });
 <div class="textblock"><code>#include &lt;cstddef&gt;</code><br />
 <code>#include &lt;cstdlib&gt;</code><br />
 <code>#include &lt;new&gt;</code><br />
-<code>#include &lt;stdexcept&gt;</code><br />
-<code>#include &lt;utility&gt;</code><br />
 </div>
 <p><a href="memory_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -106,16 +104,16 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a01287797ce9ada4af55d66a93f918a75" id="r_a01287797ce9ada4af55d66a93f918a75"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekj.html#a01287797ce9ada4af55d66a93f918a75">kj::aligned_alloc</a> (std::size_t size, std::size_t alignment)</td></tr>
-<tr class="memdesc:a01287797ce9ada4af55d66a93f918a75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates memory with a specific byte alignment.  <br /></td></tr>
-<tr class="memitem:a9828b1d88e5f0607b476e127cdcf12c4" id="r_a9828b1d88e5f0607b476e127cdcf12c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekj.html#a9828b1d88e5f0607b476e127cdcf12c4">kj::aligned_free</a> (void *ptr) noexcept</td></tr>
-<tr class="memdesc:a9828b1d88e5f0607b476e127cdcf12c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees memory allocated with <span class="tt">aligned_alloc</span>.  <br /></td></tr>
+<tr class="memitem:adceaef7aec5260e6a46bd97bda80cb74" id="r_adceaef7aec5260e6a46bd97bda80cb74"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekj.html#adceaef7aec5260e6a46bd97bda80cb74">kj::aligned_alloc</a> (std::size_t alignment, std::size_t size) noexcept</td></tr>
+<tr class="memdesc:adceaef7aec5260e6a46bd97bda80cb74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Portable aligned allocation.  <br /></td></tr>
+<tr class="memitem:a4ad15d3dd32194b765ab8d7fa3d22db6" id="r_a4ad15d3dd32194b765ab8d7fa3d22db6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekj.html#a4ad15d3dd32194b765ab8d7fa3d22db6">kj::aligned_free</a> (void *p) noexcept</td></tr>
+<tr class="memdesc:a4ad15d3dd32194b765ab8d7fa3d22db6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Portable aligned free matching <a class="el" href="namespacekj.html#adceaef7aec5260e6a46bd97bda80cb74" title="Portable aligned allocation.">kj::aligned_alloc</a>.  <br /></td></tr>
 <tr class="memitem:a76bb333c80ec67092fbe0cec6df6c6da" id="r_a76bb333c80ec67092fbe0cec6df6c6da"><td class="memTemplParams" colspan="2">template&lt;typename T, typename... Args&gt; </td></tr>
 <tr class="memitem:a76bb333c80ec67092fbe0cec6df6c6da template"><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekj.html#a76bb333c80ec67092fbe0cec6df6c6da">kj::aligned_new</a> (std::size_t alignment=alignof(T), Args &amp;&amp;... args)</td></tr>
-<tr class="memdesc:a76bb333c80ec67092fbe0cec6df6c6da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates aligned memory and constructs an object in-place.  <br /></td></tr>
+<tr class="memdesc:a76bb333c80ec67092fbe0cec6df6c6da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates aligned storage and constructs an object in-place.  <br /></td></tr>
 <tr class="memitem:aecf1f9a6a945eb384eb8debae8d1ff7d" id="r_aecf1f9a6a945eb384eb8debae8d1ff7d"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
 <tr class="memitem:aecf1f9a6a945eb384eb8debae8d1ff7d template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekj.html#aecf1f9a6a945eb384eb8debae8d1ff7d">kj::aligned_delete</a> (T *ptr) noexcept</td></tr>
-<tr class="memdesc:aecf1f9a6a945eb384eb8debae8d1ff7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls the destructor and deallocates aligned memory for an object.  <br /></td></tr>
+<tr class="memdesc:aecf1f9a6a945eb384eb8debae8d1ff7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys the object and frees aligned storage acquired by aligned_new.  <br /></td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->

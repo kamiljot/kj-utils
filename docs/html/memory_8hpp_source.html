@@ -97,63 +97,62 @@ $(function(){initNavTree('memory_8hpp_source.html','',''); });
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;cstddef&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;cstdlib&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;new&gt;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;utility&gt;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#if defined(_MSC_VER)</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;malloc.h&gt;</span> <span class="comment">// For _aligned_malloc and _aligned_free</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekj.html">kj</a> {</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span></div>
-<div class="foldopen" id="foldopen00027" data-start="{" data-end="}">
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="namespacekj.html#a01287797ce9ada4af55d66a93f918a75">   27</a></span>    <span class="keyword">inline</span> <span class="keywordtype">void</span>* <a class="code hl_function" href="namespacekj.html#a01287797ce9ada4af55d66a93f918a75">aligned_alloc</a>(std::size_t size, std::size_t alignment) {</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <span class="keywordtype">void</span>* ptr = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#if defined(_MSC_VER)</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        ptr = _aligned_malloc(size, alignment);</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keywordflow">if</span> (!ptr) <span class="keywordflow">throw</span> std::bad_alloc{};</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <span class="keywordflow">if</span> (posix_memalign(&amp;ptr, alignment, size) != 0)</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>            <span class="keywordflow">throw</span> std::bad_alloc{};</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keywordflow">return</span> ptr;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    }</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#if defined(_WIN32)</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;malloc.h&gt;</span> <span class="comment">// _aligned_malloc/_aligned_free on Windows (MSVC/MinGW)</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekj.html">kj</a> {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span></div>
+<div class="foldopen" id="foldopen00023" data-start="{" data-end="}">
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="namespacekj.html#adceaef7aec5260e6a46bd97bda80cb74">   23</a></span>    <span class="keyword">inline</span> <span class="keywordtype">void</span>* <a class="code hl_function" href="namespacekj.html#adceaef7aec5260e6a46bd97bda80cb74">aligned_alloc</a>(std::size_t alignment, std::size_t size) <span class="keyword">noexcept</span> {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#if defined(_WIN32)</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        <span class="comment">// Windows path (MSVC/MinGW): returns nullptr on failure.</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        <span class="keywordflow">return</span> _aligned_malloc(size, alignment);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <span class="keywordflow">if</span> (size == 0) <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <span class="keywordtype">void</span>* ptr = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <span class="keyword">const</span> <span class="keywordtype">int</span> rc = ::posix_memalign(&amp;ptr, alignment, size);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keywordflow">if</span> (rc != 0) <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <span class="keywordflow">return</span> ptr;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    }</div>
 </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span></div>
-<div class="foldopen" id="foldopen00048" data-start="{" data-end="}">
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="namespacekj.html#a9828b1d88e5f0607b476e127cdcf12c4">   48</a></span>    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespacekj.html#a9828b1d88e5f0607b476e127cdcf12c4">aligned_free</a>(<span class="keywordtype">void</span>* ptr) <span class="keyword">noexcept</span> {</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">#if defined(_MSC_VER)</span></div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        _aligned_free(ptr);</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        std::free(ptr);</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    }</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span></div>
+<div class="foldopen" id="foldopen00039" data-start="{" data-end="}">
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="namespacekj.html#a4ad15d3dd32194b765ab8d7fa3d22db6">   39</a></span>    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespacekj.html#a4ad15d3dd32194b765ab8d7fa3d22db6">aligned_free</a>(<span class="keywordtype">void</span>* p) <span class="keyword">noexcept</span> {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#if defined(_WIN32)</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        _aligned_free(p);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        std::free(p);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    }</div>
 </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span></div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Args&gt;</div>
-<div class="foldopen" id="foldopen00070" data-start="{" data-end="}">
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="namespacekj.html#a76bb333c80ec67092fbe0cec6df6c6da">   70</a></span>    T* <a class="code hl_function" href="namespacekj.html#a76bb333c80ec67092fbe0cec6df6c6da">aligned_new</a>(std::size_t alignment = <span class="keyword">alignof</span>(T), Args&amp;&amp;... args) {</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        <span class="keywordtype">void</span>* mem = <a class="code hl_function" href="namespacekj.html#a01287797ce9ada4af55d66a93f918a75">aligned_alloc</a>(<span class="keyword">sizeof</span>(T), alignment);</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        <span class="keywordflow">return</span> <span class="keyword">new</span> (mem) T(std::forward&lt;Args&gt;(args)...);</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    }</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Args&gt;</div>
+<div class="foldopen" id="foldopen00057" data-start="{" data-end="}">
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="namespacekj.html#a76bb333c80ec67092fbe0cec6df6c6da">   57</a></span>    T* <a class="code hl_function" href="namespacekj.html#a76bb333c80ec67092fbe0cec6df6c6da">aligned_new</a>(std::size_t alignment = <span class="keyword">alignof</span>(T), Args&amp;&amp;... args) {</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="keywordtype">void</span>* mem = <a class="code hl_function" href="namespacekj.html#adceaef7aec5260e6a46bd97bda80cb74">kj::aligned_alloc</a>(alignment, <span class="keyword">sizeof</span>(T));</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="keywordflow">if</span> (!mem) <span class="keywordflow">throw</span> std::bad_alloc{};</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="keywordflow">return</span> <span class="keyword">new</span> (mem) T(std::forward&lt;Args&gt;(args)...);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    }</div>
 </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span></div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00085" data-start="{" data-end="}">
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="namespacekj.html#aecf1f9a6a945eb384eb8debae8d1ff7d">   85</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="namespacekj.html#aecf1f9a6a945eb384eb8debae8d1ff7d">aligned_delete</a>(T* ptr) <span class="keyword">noexcept</span> {</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        <span class="keywordflow">if</span> (ptr) {</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>            ptr-&gt;~T();</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>            <a class="code hl_function" href="namespacekj.html#a9828b1d88e5f0607b476e127cdcf12c4">aligned_free</a>(<span class="keyword">static_cast&lt;</span><span class="keywordtype">void</span>*<span class="keyword">&gt;</span>(ptr));</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        }</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    }</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00067" data-start="{" data-end="}">
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="namespacekj.html#aecf1f9a6a945eb384eb8debae8d1ff7d">   67</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="namespacekj.html#aecf1f9a6a945eb384eb8debae8d1ff7d">aligned_delete</a>(T* ptr) <span class="keyword">noexcept</span> {</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="keywordflow">if</span> (!ptr) <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        ptr-&gt;~T();</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <a class="code hl_function" href="namespacekj.html#a4ad15d3dd32194b765ab8d7fa3d22db6">kj::aligned_free</a>(<span class="keyword">static_cast&lt;</span><span class="keywordtype">void</span>*<span class="keyword">&gt;</span>(ptr));</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    }</div>
 </div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>} <span class="comment">// namespace kj</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>} <span class="comment">// namespace kj</span></div>
 <div class="ttc" id="anamespacekj_html"><div class="ttname"><a href="namespacekj.html">kj</a></div><div class="ttdef"><b>Definition</b> benchmark.hpp:12</div></div>
-<div class="ttc" id="anamespacekj_html_a01287797ce9ada4af55d66a93f918a75"><div class="ttname"><a href="namespacekj.html#a01287797ce9ada4af55d66a93f918a75">kj::aligned_alloc</a></div><div class="ttdeci">void * aligned_alloc(std::size_t size, std::size_t alignment)</div><div class="ttdoc">Allocates memory with a specific byte alignment.</div><div class="ttdef"><b>Definition</b> memory.hpp:27</div></div>
-<div class="ttc" id="anamespacekj_html_a76bb333c80ec67092fbe0cec6df6c6da"><div class="ttname"><a href="namespacekj.html#a76bb333c80ec67092fbe0cec6df6c6da">kj::aligned_new</a></div><div class="ttdeci">T * aligned_new(std::size_t alignment=alignof(T), Args &amp;&amp;... args)</div><div class="ttdoc">Allocates aligned memory and constructs an object in-place.</div><div class="ttdef"><b>Definition</b> memory.hpp:70</div></div>
-<div class="ttc" id="anamespacekj_html_a9828b1d88e5f0607b476e127cdcf12c4"><div class="ttname"><a href="namespacekj.html#a9828b1d88e5f0607b476e127cdcf12c4">kj::aligned_free</a></div><div class="ttdeci">void aligned_free(void *ptr) noexcept</div><div class="ttdoc">Frees memory allocated with aligned_alloc.</div><div class="ttdef"><b>Definition</b> memory.hpp:48</div></div>
-<div class="ttc" id="anamespacekj_html_aecf1f9a6a945eb384eb8debae8d1ff7d"><div class="ttname"><a href="namespacekj.html#aecf1f9a6a945eb384eb8debae8d1ff7d">kj::aligned_delete</a></div><div class="ttdeci">void aligned_delete(T *ptr) noexcept</div><div class="ttdoc">Calls the destructor and deallocates aligned memory for an object.</div><div class="ttdef"><b>Definition</b> memory.hpp:85</div></div>
+<div class="ttc" id="anamespacekj_html_a4ad15d3dd32194b765ab8d7fa3d22db6"><div class="ttname"><a href="namespacekj.html#a4ad15d3dd32194b765ab8d7fa3d22db6">kj::aligned_free</a></div><div class="ttdeci">void aligned_free(void *p) noexcept</div><div class="ttdoc">Portable aligned free matching kj::aligned_alloc.</div><div class="ttdef"><b>Definition</b> memory.hpp:39</div></div>
+<div class="ttc" id="anamespacekj_html_a76bb333c80ec67092fbe0cec6df6c6da"><div class="ttname"><a href="namespacekj.html#a76bb333c80ec67092fbe0cec6df6c6da">kj::aligned_new</a></div><div class="ttdeci">T * aligned_new(std::size_t alignment=alignof(T), Args &amp;&amp;... args)</div><div class="ttdoc">Allocates aligned storage and constructs an object in-place.</div><div class="ttdef"><b>Definition</b> memory.hpp:57</div></div>
+<div class="ttc" id="anamespacekj_html_adceaef7aec5260e6a46bd97bda80cb74"><div class="ttname"><a href="namespacekj.html#adceaef7aec5260e6a46bd97bda80cb74">kj::aligned_alloc</a></div><div class="ttdeci">void * aligned_alloc(std::size_t alignment, std::size_t size) noexcept</div><div class="ttdoc">Portable aligned allocation.</div><div class="ttdef"><b>Definition</b> memory.hpp:23</div></div>
+<div class="ttc" id="anamespacekj_html_aecf1f9a6a945eb384eb8debae8d1ff7d"><div class="ttname"><a href="namespacekj.html#aecf1f9a6a945eb384eb8debae8d1ff7d">kj::aligned_delete</a></div><div class="ttdeci">void aligned_delete(T *ptr) noexcept</div><div class="ttdoc">Destroys the object and frees aligned storage acquired by aligned_new.</div><div class="ttdef"><b>Definition</b> memory.hpp:67</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

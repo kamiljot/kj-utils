@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['test_20list_0',['Test List',['../test.html',1,'']]],
-  ['that’s_20it_1',['Then include what you need. That’s it.',['../index.html#autotoc_md8',1,'']]],
-  ['then_20include_20what_20you_20need_20that’s_20it_2',['Then include what you need. That’s it.',['../index.html#autotoc_md8',1,'']]]
+  ['scopeguard_20timer_0',['Result + ScopeGuard + Timer',['../index.html#autotoc_md11',1,'']]],
+  ['skew_20heap_20pool_20backed_1',['Skew Heap (pool-backed)',['../index.html#autotoc_md13',1,'']]],
+  ['snippets_2',['Example Snippets',['../index.html#autotoc_md10',1,'']]],
+  ['start_3',['Quick Start',['../index.html#autotoc_md4',1,'']]],
+  ['submodule_4',['As a submodule',['../index.html#autotoc_md5',1,'']]]
 ];

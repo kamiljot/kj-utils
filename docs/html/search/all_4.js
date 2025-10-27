@@ -6,5 +6,6 @@ var searchData=
   ['end_5f_3',['end_',['../classkj_1_1io_1_1_fast_input.html#aea095d54cf1395f30c71d4104b135803',1,'kj::io::FastInput']]],
   ['ensure_5f_4',['ensure_',['../classkj_1_1io_1_1_fast_input.html#a35166f5a1ff074f817b9bc6b7fb45019',1,'kj::io::FastInput']]],
   ['error_5',['error',['../classkj_1_1_result.html#ac0351aa5a1cce6cb5c970c9fee0c0d95',1,'kj::Result::error()'],['../classkj_1_1_result.html#af0538eb8ea1c1497cbbd5b3326263e1c',1,'kj::Result::error() const'],['../namespacekj.html#acf53d7aeb2327fb1cc0c593f337b5296',1,'kj::error()']]],
-  ['example_20use_6',['Example Use',['../index.html#autotoc_md3',1,'']]]
+  ['example_20snippets_6',['Example Snippets',['../index.html#autotoc_md10',1,'']]],
+  ['examples_7',['Examples',['../index.html#autotoc_md7',1,'']]]
 ];

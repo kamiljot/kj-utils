@@ -25,19 +25,27 @@
 var NAVTREE =
 [
   [ "kj-utils", "index.html", [
-    [ "Features", "index.html#autotoc_md1", null ],
-    [ "Purpose", "index.html#autotoc_md2", null ],
-    [ "Example Use", "index.html#autotoc_md3", null ],
-    [ "Projects Using kj-utils", "index.html#autotoc_md4", null ],
-    [ "- ml-scenario-benchmark (planned) – for benchmarking ML workloads with consistent methodology", "index.html#autotoc_md5", [
-      [ "Documentation", "index.html#autotoc_md6", null ],
-      [ "Header-Only Design", "index.html#autotoc_md7", null ]
+    [ "Table of Contents", "index.html#autotoc_md1", null ],
+    [ "Features", "index.html#autotoc_md2", null ],
+    [ "Purpose", "index.html#autotoc_md3", null ],
+    [ "Quick Start", "index.html#autotoc_md4", [
+      [ "As a submodule", "index.html#autotoc_md5", null ]
     ] ],
-    [ "Then include what you need. That’s it.", "index.html#autotoc_md8", [
-      [ "License", "index.html#autotoc_md9", null ],
-      [ "Author", "index.html#autotoc_md10", null ]
+    [ "Build &amp; Tests", "index.html#autotoc_md6", [
+      [ "Examples", "index.html#autotoc_md7", null ],
+      [ "Tested Toolchains", "index.html#autotoc_md8", null ]
     ] ],
-    [ "&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD", "index.html#autotoc_md11", null ],
+    [ "Documentation", "index.html#autotoc_md9", null ],
+    [ "Example Snippets", "index.html#autotoc_md10", [
+      [ "Result + ScopeGuard + Timer", "index.html#autotoc_md11", null ],
+      [ "DSU", "index.html#autotoc_md12", null ],
+      [ "Skew Heap (pool-backed)", "index.html#autotoc_md13", null ]
+    ] ],
+    [ "Integration Notes", "index.html#autotoc_md14", null ],
+    [ "Projects Using kj-utils", "index.html#autotoc_md15", null ],
+    [ "Roadmap", "index.html#autotoc_md16", null ],
+    [ "License", "index.html#autotoc_md17", null ],
+    [ "Author", "index.html#autotoc_md18", null ],
     [ "Test List", "test.html", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],

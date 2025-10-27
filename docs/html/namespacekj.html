@@ -136,16 +136,16 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a01287797ce9ada4af55d66a93f918a75" id="r_a01287797ce9ada4af55d66a93f918a75"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a01287797ce9ada4af55d66a93f918a75">aligned_alloc</a> (std::size_t size, std::size_t alignment)</td></tr>
-<tr class="memdesc:a01287797ce9ada4af55d66a93f918a75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates memory with a specific byte alignment.  <br /></td></tr>
-<tr class="memitem:a9828b1d88e5f0607b476e127cdcf12c4" id="r_a9828b1d88e5f0607b476e127cdcf12c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9828b1d88e5f0607b476e127cdcf12c4">aligned_free</a> (void *ptr) noexcept</td></tr>
-<tr class="memdesc:a9828b1d88e5f0607b476e127cdcf12c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees memory allocated with <span class="tt">aligned_alloc</span>.  <br /></td></tr>
+<tr class="memitem:adceaef7aec5260e6a46bd97bda80cb74" id="r_adceaef7aec5260e6a46bd97bda80cb74"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adceaef7aec5260e6a46bd97bda80cb74">aligned_alloc</a> (std::size_t alignment, std::size_t size) noexcept</td></tr>
+<tr class="memdesc:adceaef7aec5260e6a46bd97bda80cb74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Portable aligned allocation.  <br /></td></tr>
+<tr class="memitem:a4ad15d3dd32194b765ab8d7fa3d22db6" id="r_a4ad15d3dd32194b765ab8d7fa3d22db6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4ad15d3dd32194b765ab8d7fa3d22db6">aligned_free</a> (void *p) noexcept</td></tr>
+<tr class="memdesc:a4ad15d3dd32194b765ab8d7fa3d22db6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Portable aligned free matching <a class="el" href="#adceaef7aec5260e6a46bd97bda80cb74" title="Portable aligned allocation.">kj::aligned_alloc</a>.  <br /></td></tr>
 <tr class="memitem:a76bb333c80ec67092fbe0cec6df6c6da" id="r_a76bb333c80ec67092fbe0cec6df6c6da"><td class="memTemplParams" colspan="2">template&lt;typename T, typename... Args&gt; </td></tr>
 <tr class="memitem:a76bb333c80ec67092fbe0cec6df6c6da template"><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a76bb333c80ec67092fbe0cec6df6c6da">aligned_new</a> (std::size_t alignment=alignof(T), Args &amp;&amp;... args)</td></tr>
-<tr class="memdesc:a76bb333c80ec67092fbe0cec6df6c6da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates aligned memory and constructs an object in-place.  <br /></td></tr>
+<tr class="memdesc:a76bb333c80ec67092fbe0cec6df6c6da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates aligned storage and constructs an object in-place.  <br /></td></tr>
 <tr class="memitem:aecf1f9a6a945eb384eb8debae8d1ff7d" id="r_aecf1f9a6a945eb384eb8debae8d1ff7d"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
 <tr class="memitem:aecf1f9a6a945eb384eb8debae8d1ff7d template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aecf1f9a6a945eb384eb8debae8d1ff7d">aligned_delete</a> (T *ptr) noexcept</td></tr>
-<tr class="memdesc:aecf1f9a6a945eb384eb8debae8d1ff7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls the destructor and deallocates aligned memory for an object.  <br /></td></tr>
+<tr class="memdesc:aecf1f9a6a945eb384eb8debae8d1ff7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys the object and frees aligned storage acquired by aligned_new.  <br /></td></tr>
 <tr class="memitem:a6be28fb06908652c08e20c5ee922f385" id="r_a6be28fb06908652c08e20c5ee922f385"><td class="memTemplParams" colspan="2">template&lt;typename T, typename E = std::string&gt; </td></tr>
 <tr class="memitem:a6be28fb06908652c08e20c5ee922f385 template"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkj_1_1_result.html">Result</a>&lt; T, E &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6be28fb06908652c08e20c5ee922f385">ok</a> (T &amp;&amp;value)</td></tr>
 <tr class="memdesc:a6be28fb06908652c08e20c5ee922f385"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <span class="tt"><a class="el" href="classkj_1_1_result.html" title="A lightweight alternative to std::expected for value-or-error return semantics.">Result</a></span> representing a successful outcome.  <br /></td></tr>
@@ -285,8 +285,8 @@ template&lt;typename T&gt; </div>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
-<a id="a01287797ce9ada4af55d66a93f918a75" name="a01287797ce9ada4af55d66a93f918a75"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a01287797ce9ada4af55d66a93f918a75">&#9670;&#160;</a></span>aligned_alloc()</h2>
+<a id="adceaef7aec5260e6a46bd97bda80cb74" name="adceaef7aec5260e6a46bd97bda80cb74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adceaef7aec5260e6a46bd97bda80cb74">&#9670;&#160;</a></span>aligned_alloc()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -297,40 +297,34 @@ template&lt;typename T&gt; </div>
         <tr>
           <td class="memname">void * kj::aligned_alloc </td>
           <td>(</td>
-          <td class="paramtype">std::size_t</td>          <td class="paramname"><span class="paramname"><em>size</em></span>, </td>
+          <td class="paramtype">std::size_t</td>          <td class="paramname"><span class="paramname"><em>alignment</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::size_t</td>          <td class="paramname"><span class="paramname"><em>alignment</em></span>&#160;)</td>
+          <td class="paramtype">std::size_t</td>          <td class="paramname"><span class="paramname"><em>size</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel noexcept">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Allocates memory with a specific byte alignment. </p>
-<p>This function provides platform-specific aligned allocation:</p><ul>
-<li>On Windows, it uses <span class="tt">_aligned_malloc</span>.</li>
-<li>On POSIX systems, it uses <span class="tt">posix_memalign</span>.</li>
+<p>Portable aligned allocation. </p>
+<ul>
+<li>On Windows (_WIN32): uses <span class="tt">_aligned_malloc(size, alignment)</span>.</li>
+<li>On POSIX: uses <span class="tt">posix_memalign(&amp;ptr, alignment, size)</span>.</li>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">size</td><td>The size of the memory block in bytes. </td></tr>
-    <tr><td class="paramname">alignment</td><td>The alignment requirement in bytes (must be power of two). </td></tr>
+    <tr><td class="paramname">alignment</td><td>Alignment in bytes (power of two, &gt;= sizeof(void*)). </td></tr>
+    <tr><td class="paramname">size</td><td>Number of bytes to allocate. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A pointer to the allocated memory block. </dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">std::bad_alloc</td><td>if allocation fails. </td></tr>
-  </table>
-  </dd>
-</dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer to aligned memory, or nullptr on failure. </dd></dl>
 
 </div>
 </div>
@@ -359,25 +353,12 @@ template&lt;typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Calls the destructor and deallocates aligned memory for an object. </p>
-<p>Destroys the object pointed to by <span class="tt">ptr</span> and frees the aligned memory previously allocated by <span class="tt">aligned_new</span>.</p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>The type of the object. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ptr</td><td>Pointer to the object to destroy and deallocate. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Destroys the object and frees aligned storage acquired by aligned_new. </p>
 
 </div>
 </div>
-<a id="a9828b1d88e5f0607b476e127cdcf12c4" name="a9828b1d88e5f0607b476e127cdcf12c4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9828b1d88e5f0607b476e127cdcf12c4">&#9670;&#160;</a></span>aligned_free()</h2>
+<a id="a4ad15d3dd32194b765ab8d7fa3d22db6" name="a4ad15d3dd32194b765ab8d7fa3d22db6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ad15d3dd32194b765ab8d7fa3d22db6">&#9670;&#160;</a></span>aligned_free()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -388,7 +369,7 @@ template&lt;typename T&gt; </div>
         <tr>
           <td class="memname">void kj::aligned_free </td>
           <td>(</td>
-          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>ptr</em></span></td><td>)</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>p</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -399,17 +380,7 @@ template&lt;typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Frees memory allocated with <span class="tt">aligned_alloc</span>. </p>
-<p>Uses platform-specific deallocation matching the allocation method:</p><ul>
-<li><span class="tt">_aligned_free</span> on Windows.</li>
-<li><span class="tt">std::free</span> on POSIX.</li>
-</ul>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ptr</td><td>Pointer to the previously allocated aligned memory. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Portable aligned free matching <a class="el" href="#adceaef7aec5260e6a46bd97bda80cb74" title="Portable aligned allocation.">kj::aligned_alloc</a>. </p>
 
 </div>
 </div>
@@ -434,29 +405,22 @@ template&lt;typename T, typename... Args&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Allocates aligned memory and constructs an object in-place. </p>
-<p>Allocates memory aligned to <span class="tt">alignment</span> bytes and constructs an object of type <span class="tt">T</span> using placement new with the provided arguments.</p>
+<p>Allocates aligned storage and constructs an object in-place. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">T</td><td>The type of the object to construct. </td></tr>
+    <tr><td class="paramname">T</td><td>Object type to construct. </td></tr>
     <tr><td class="paramname">Args</td><td>Argument types forwarded to T's constructor. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">alignment</td><td>The desired memory alignment in bytes. Defaults to alignof(T). </td></tr>
-    <tr><td class="paramname">args</td><td>Arguments forwarded to T's constructor. </td></tr>
+    <tr><td class="paramname">alignment</td><td>Desired alignment in bytes (defaults to alignof(T)). </td></tr>
+    <tr><td class="paramname">args</td><td>Constructor arguments. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Pointer to the constructed object of type <span class="tt">T</span>. </dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">std::bad_alloc</td><td>if allocation fails. </td></tr>
-  </table>
-  </dd>
-</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to constructed object, or throws std::bad_alloc on failure. </dd></dl>
 
 </div>
 </div>

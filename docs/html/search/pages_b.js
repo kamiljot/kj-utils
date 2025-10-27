@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['need_20that’s_20it_0',['Then include what you need. That’s it.',['../index.html#autotoc_md8',1,'']]]
+  ['of_20contents_0',['Table of Contents',['../index.html#autotoc_md1',1,'']]]
 ];

@@ -3,90 +3,71 @@
 #include <cstddef>
 #include <cstdlib>
 #include <new>
-#include <stdexcept>
-#include <utility>
 
-#if defined(_MSC_VER)
-#include <malloc.h> // For _aligned_malloc and _aligned_free
+#if defined(_WIN32)
+#include <malloc.h> // _aligned_malloc/_aligned_free on Windows (MSVC/MinGW)
 #endif
 
 namespace kj {
 
 	/**
-	 * @brief Allocates memory with a specific byte alignment.
+	 * @brief Portable aligned allocation.
 	 *
-	 * This function provides platform-specific aligned allocation:
-	 * - On Windows, it uses `_aligned_malloc`.
-	 * - On POSIX systems, it uses `posix_memalign`.
+	 * - On Windows (_WIN32): uses `_aligned_malloc(size, alignment)`.
+	 * - On POSIX: uses `posix_memalign(&ptr, alignment, size)`.
 	 *
-	 * @param size The size of the memory block in bytes.
-	 * @param alignment The alignment requirement in bytes (must be power of two).
-	 * @return A pointer to the allocated memory block.
-	 * @throws std::bad_alloc if allocation fails.
+	 * @param alignment Alignment in bytes (power of two, >= sizeof(void*)).
+	 * @param size      Number of bytes to allocate.
+	 * @return pointer to aligned memory, or nullptr on failure.
 	 */
-	inline void* aligned_alloc(std::size_t size, std::size_t alignment) {
+	inline void* aligned_alloc(std::size_t alignment, std::size_t size) noexcept {
+#if defined(_WIN32)
+		// Windows path (MSVC/MinGW): returns nullptr on failure.
+		return _aligned_malloc(size, alignment);
+#else
+		if (size == 0) return nullptr;
 		void* ptr = nullptr;
-#if defined(_MSC_VER)
-		ptr = _aligned_malloc(size, alignment);
-		if (!ptr) throw std::bad_alloc{};
-#else
-		if (posix_memalign(&ptr, alignment, size) != 0)
-			throw std::bad_alloc{};
-#endif
+		const int rc = ::posix_memalign(&ptr, alignment, size);
+		if (rc != 0) return nullptr;
 		return ptr;
-	}
-
-	/**
-	 * @brief Frees memory allocated with `aligned_alloc`.
-	 *
-	 * Uses platform-specific deallocation matching the allocation method:
-	 * - `_aligned_free` on Windows.
-	 * - `std::free` on POSIX.
-	 *
-	 * @param ptr Pointer to the previously allocated aligned memory.
-	 */
-	inline void aligned_free(void* ptr) noexcept {
-#if defined(_MSC_VER)
-		_aligned_free(ptr);
-#else
-		std::free(ptr);
 #endif
 	}
 
 	/**
-	 * @brief Allocates aligned memory and constructs an object in-place.
+	 * @brief Portable aligned free matching kj::aligned_alloc.
+	 */
+	inline void aligned_free(void* p) noexcept {
+#if defined(_WIN32)
+		_aligned_free(p);
+#else
+		std::free(p);
+#endif
+	}
+
+	/**
+	 * @brief Allocates aligned storage and constructs an object in-place.
 	 *
-	 * Allocates memory aligned to `alignment` bytes and constructs an object
-	 * of type `T` using placement new with the provided arguments.
-	 *
-	 * @tparam T The type of the object to construct.
+	 * @tparam T Object type to construct.
 	 * @tparam Args Argument types forwarded to T's constructor.
-	 * @param alignment The desired memory alignment in bytes. Defaults to alignof(T).
-	 * @param args Arguments forwarded to T's constructor.
-	 * @return Pointer to the constructed object of type `T`.
-	 * @throws std::bad_alloc if allocation fails.
+	 * @param alignment Desired alignment in bytes (defaults to alignof(T)).
+	 * @param args Constructor arguments.
+	 * @return Pointer to constructed object, or throws std::bad_alloc on failure.
 	 */
 	template <typename T, typename... Args>
 	T* aligned_new(std::size_t alignment = alignof(T), Args&&... args) {
-		void* mem = aligned_alloc(sizeof(T), alignment);
+		void* mem = kj::aligned_alloc(alignment, sizeof(T));
+		if (!mem) throw std::bad_alloc{};
 		return new (mem) T(std::forward<Args>(args)...);
 	}
 
 	/**
-	 * @brief Calls the destructor and deallocates aligned memory for an object.
-	 *
-	 * Destroys the object pointed to by `ptr` and frees the aligned memory
-	 * previously allocated by `aligned_new`.
-	 *
-	 * @tparam T The type of the object.
-	 * @param ptr Pointer to the object to destroy and deallocate.
+	 * @brief Destroys the object and frees aligned storage acquired by aligned_new.
 	 */
 	template <typename T>
 	void aligned_delete(T* ptr) noexcept {
-		if (ptr) {
-			ptr->~T();
-			aligned_free(static_cast<void*>(ptr));
-		}
+		if (!ptr) return;
+		ptr->~T();
+		kj::aligned_free(static_cast<void*>(ptr));
 	}
 
 } // namespace kj

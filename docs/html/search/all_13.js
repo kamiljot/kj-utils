@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['value_0',['value',['../classkj_1_1_result.html#ab68ffc8caea4029ddb088eabeb5eefb9',1,'kj::Result::value()'],['../classkj_1_1_result.html#add8ce91cb759fb276425df7117ba19af',1,'kj::Result::value() const']]],
-  ['view_1',['View',['../namespacekj.html#a96ee5b297f31b845b483c9577dbc4a28',1,'kj']]],
-  ['view_2ehpp_2',['view.hpp',['../view_8hpp.html',1,'']]]
+  ['unite_0',['unite',['../structkj_1_1detail_1_1_d_s_u.html#aa8c263b7d240452b785ffbc67c9d9903',1,'kj::detail::DSU::unite()'],['../structkj_1_1detail_1_1_rollback_d_s_u.html#a9ae0044f5c3eab3bd10b42aff3ba56f3',1,'kj::detail::RollbackDSU::unite()']]],
+  ['universe_1',['universe',['../structkj_1_1detail_1_1_d_s_u.html#a3dd6952690eee4fd3b35690747ce7a1a',1,'kj::detail::DSU::universe()'],['../structkj_1_1detail_1_1_rollback_d_s_u.html#aae3f296353d3ef22f5bd4b836573a5e6',1,'kj::detail::RollbackDSU::universe()']]],
+  ['using_20kj_20utils_2',['Projects Using kj-utils',['../index.html#autotoc_md15',1,'']]],
+  ['utils_3',['utils',['../index.html',1,'kj-utils'],['../index.html#autotoc_md15',1,'Projects Using kj-utils']]]
 ];
